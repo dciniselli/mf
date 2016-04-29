@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-
+ruby '2.3.0'
 gem 'rails', '4.2.6'
-gem 'sqlite3'
+gem 'sqlite3', group: :development
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -16,6 +16,8 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'figaro'
 gem 'paperclip'
+gem 'rails_12factor', group: :production
+gem 'pg', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
