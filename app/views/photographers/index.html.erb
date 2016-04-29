@@ -1,0 +1,32 @@
+<div class="row">
+	<div class="col-md-3">
+		<ul class="sidebar-list">
+			<li class="sidebar-item"><%= link_to "Il tuo annuncio", photographers_path, class: "sidebar_link active" %></li>
+			<li class="sidebar-item"><%= link_to "Le tue prenotazioni", photographers_path, class: "sidebar_link" %></li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Annuncio
+			</div>
+			<div class="panel-body">
+
+				<div class="row">
+					<div class="col-md-2">
+						<% if @photos %>
+						<%= image_tag @photographer.photos[0].image.url(:thumb) %>
+						<% end %>
+					</div>
+					<div class="col-md-7">
+						<h4><%= @photographer.titolo %></h4>
+					</div>
+					<div class="col-md-3 right">
+						<%= link_to "Modifica", edit_photographer_path(@photographer), class: "btn btn-primary" %>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

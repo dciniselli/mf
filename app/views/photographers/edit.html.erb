@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+      <li class="sidebar-item"><%=link_to "Modifica Profilo", edit_user_registration_path, class: "sidebar-link active" %></li>
+    </ul>
+    <br/>
+    <%= link_to "Visualizza Profilo", user_path(current_user.id), class: "btn btn-default wide" %>
+  </div>
+
+  <div class="col-md-9 text-center">
+  	<%= render 'form' %>
+  </div>
+</div>

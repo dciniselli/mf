@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  titolo: MyString
+  descrizione: MyText
+  indirizzo: MyString
+  imprevisti: MyText
+  foto_cerimonia: 1
+  video_cerimonia: 1
+  foto_pre: 1
+  video_pre: 1
+  foto_post: 1
+  video_post: 1
+  second_camera: 1
+  second_videocamera: 1
+  album: 1
+  mini_album: 1
+  foto_hd: 1
+  negativi: 1
+  dvd: 1
+  trailer_foto: 1
+  trailer_video: 1
+  drone: 1
+  tempi_consegna: 1
+  num_foto: 1
+  durata_video: 1
+  user_id: 
+
+two:
+  nome: MyString
+  titolo: MyString
+  descrizione: MyText
+  indirizzo: MyString
+  imprevisti: MyText
+  foto_cerimonia: 1
+  video_cerimonia: 1
+  foto_pre: 1
+  video_pre: 1
+  foto_post: 1
+  video_post: 1
+  second_camera: 1
+  second_videocamera: 1
+  album: 1
+  mini_album: 1
+  foto_hd: 1
+  negativi: 1
+  dvd: 1
+  trailer_foto: 1
+  trailer_video: 1
+  drone: 1
+  tempi_consegna: 1
+  num_foto: 1
+  durata_video: 1
+  user_id: 

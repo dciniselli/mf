@@ -1,0 +1,29 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            nome:
+              blank: "obbligatorio"
+              too_long: "troppo lungo (massimo %{count} caratteri)"
+            email:
+              blank: "obbligatoria"
+              taken: "già in uso"
+              invalid: "non valida"
+            password:
+              blank: "obbligatoria"
+              confirmation: "non riconosciuta"
+              too_short: "troppo corta (minimo %{count} caratteri)"
+            password_confirmation:
+              blank: "obbligatoria"
+            current_password:
+              blank: "obbligatoria"
+              invalid: "non valida"
