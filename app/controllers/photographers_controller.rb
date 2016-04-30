@@ -4,6 +4,7 @@ class PhotographersController < ApplicationController
 
   def index
     @photographer = current_user.photographer
+    @photos = @photographer.photos
   end
 
   def show
