@@ -20,9 +20,12 @@ Rails.application.configure do
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
+  # CAMBIATO PER PERMETTERE ACCESSO ALLE IMMAGINI SU HEROKU. RICAMBIARE AL MOMENTO DELLA MIGRAZIONE SU ARUBA
+  # come? togliere commento a config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present? ed eliminare config.serve_static_files = true
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -77,5 +80,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Manda i link di attivazione, conferma, etc relativamente a questo indirizzo
   config.action_mailer.default_url_options = { host: 'https://matrifoto.herokuapp.com' }
 end
