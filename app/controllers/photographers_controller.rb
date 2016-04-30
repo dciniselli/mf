@@ -11,12 +11,13 @@ class PhotographersController < ApplicationController
   end
 
   def new
-    @photographer = current_user.build_photographer
+    @photographer = Photographer.new
   end
 
   def create
-    @photographer = current_user.build_photographer(photographer_params)
-
+    @photographer = Photographer.new(photographer_params)
+    @photographer.user_id = current_user.id
+    
     if @photographer.save 
 
       if params[:images]
