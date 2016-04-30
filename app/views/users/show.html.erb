@@ -1,7 +1,13 @@
 <div class="row">
 	<div class="col-md-3">
 		<div class="center">
-			<%= image_tag avatar_url(@user), class: "avatar-full" %>
+			<% if @user.avatar? %>
+				<%= image_tag @user.avatar, class: "avatar-full" %>
+			<% elsif @user.image? %>
+				<%= image_tag avatar_url(@user), class: "avatar-full" %>
+			<% else %>
+				<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "avatar-full" %>
+			<% end %>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">Identificazione</div>

@@ -6,6 +6,6 @@ class Photographer < ActiveRecord::Base
   validates :descrizione, presence: true
   validates :indirizzo, presence: true, length: {maximum: 500}
   validates :imprevisti, presence: true
-  validates :tempi_consegna, presence: true
+  validates :tempi_consegna, presence: true, length: {maximum: 500}
 
 end

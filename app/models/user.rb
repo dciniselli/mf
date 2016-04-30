@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
 
   has_one :photographer, dependent: :destroy
 
+  has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 5.megabytes
+
   def self.from_omniauth(auth)
   	user = User.where(email: auth.info.email).first
 

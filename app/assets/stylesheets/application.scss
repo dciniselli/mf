@@ -79,18 +79,25 @@ body {
 
 .avatar-small {
 	width: 32px;
+	height: 32px;
+	overflow: hidden;
 }
 
 .avatar-medium {
 	width: 52px;
+	height: 52px;
+	overflow: hidden;
 }
 
 .avatar-large {
 	width: 72px;
+	height: 72px;
+	overflow: hidden;
 }
 
 .avatar-full {
 	width: 100%;
+	height: 100%;
 }
 
 .form-group {
