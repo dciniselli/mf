@@ -4,15 +4,19 @@
 		<!-- Info principali -->
 		<div class="row">
 			<div class="col-md-3 text-center">
-				<% if @photographer.user.avatar? %>
-					<%= image_tag @photographer.user.avatar(:thumb), class: "img-circle avatar-large" %>
-				<% elsif @photographer.user.image? %>
-					<%= image_tag avatar_url(@photographer.user), class: "img-circle avatar-large" %>
+				<% if (current_user.id == @photographer.user_id) %>
+					<%= link_to "Modifica annuncio", edit_photographer_path(current_user.photographer), class: "btn btn-primary" %>
 				<% else %>
-					<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>
-			<% end %>
-				<br>
-				<%= @photographer.user.nome %>
+					<% if @photographer.user.avatar? %>
+						<%= image_tag @photographer.user.avatar(:thumb), class: "img-circle avatar-large" %>
+					<% elsif @photographer.user.image? %>
+						<%= image_tag avatar_url(@photographer.user), class: "img-circle avatar-large" %>
+					<% else %>
+						<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>
+					<% end %>
+					<br>
+					<%= @photographer.user.nome %>
+				<% end %>
 			</div>
 
 			<div class="col-md-9" >
@@ -62,13 +66,9 @@
 		<br/>
 
 		<div class="row">
+			<div class="col-md-12">
 
-			<!-- spazio a sx -->
-			<div class="col-md-8">
-
-				<!-- Info secondarie -->
-				<div class="row">
-					<div class="col-md-12">
+						<!-- Info secondarie -->
 						<div class="row text-center row-space-1">
 							<div class="col-sm-4">
 								<i class="fa fa-clock-o fa-2x"></i>
@@ -96,20 +96,26 @@
 						<hr>
 
 						<h4>Maggiori informazioni</h4>
-						<p><%= @photographer.descrizione %></p>
+						<p><%= simple_format(@photographer.descrizione) %></p>
 						
 						<hr>
 
 						<h4>Gestione imprevisti</h4>
 						<p><%= @photographer.imprevisti %></p>
 
+						<h4>Politica di cancellazione</h4>
+						<p><%= @photographer.cancellazione %></p>
+
+						<hr>
+
+
+				<!-- spazio a dx -->
+				<div class="row">
+					<div class="col-md-12">
+						<!-- Preventivo -->
+						<%= render 'reservations/form' %>
 					</div>
 				</div>
-			</div>
-
-			<!-- spazio a dx -->
-			<div class="col-md-4">
-				<!-- Preventivo -->
 			</div>
 		</div>
 

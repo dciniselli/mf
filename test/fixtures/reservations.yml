@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  photographer_id: 
+  data: 2016-05-01 15:05:18
+  indirizzo: MyString
+  status: MyString
+  total: 1
+  tempi_consegna: MyString
+  num_foto: MyString
+  durata_video: MyString
+  imprevisti: MyText
+  cancellazione: MyText
+  foto_cerimonia: 1
+  video_cerimonia: 1
+  foto_pre: 1
+  foto_post: 1
+  video_pre: 1
+  video_post: 1
+  second_camera: 1
+  second_videocamera: 1
+  album: 1
+  mini_album: 1
+  foto_hd: 1
+  negativi: 1
+  dvd: 1
+  trailer_foto: 1
+  trailer_video: 1
+  drone: 1
+
+two:
+  user_id: 
+  photographer_id: 
+  data: 2016-05-01 15:05:18
+  indirizzo: MyString
+  status: MyString
+  total: 1
+  tempi_consegna: MyString
+  num_foto: MyString
+  durata_video: MyString
+  imprevisti: MyText
+  cancellazione: MyText
+  foto_cerimonia: 1
+  video_cerimonia: 1
+  foto_pre: 1
+  foto_post: 1
+  video_pre: 1
+  video_post: 1
+  second_camera: 1
+  second_videocamera: 1
+  album: 1
+  mini_album: 1
+  foto_hd: 1
+  negativi: 1
+  dvd: 1
+  trailer_foto: 1
+  trailer_video: 1
+  drone: 1

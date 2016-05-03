@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430141858) do
+ActiveRecord::Schema.define(version: 20160501120518) do
 
   create_table "photographers", force: :cascade do |t|
     t.string   "nome"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160430141858) do
     t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.text     "cancellazione"
   end
 
   add_index "photographers", ["user_id"], name: "index_photographers_on_user_id"
@@ -56,6 +57,42 @@ ActiveRecord::Schema.define(version: 20160430141858) do
   end
 
   add_index "photos", ["photographer_id"], name: "index_photos_on_photographer_id"
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "photographer_id"
+    t.datetime "data"
+    t.string   "indirizzo"
+    t.string   "status"
+    t.integer  "total"
+    t.string   "tempi_consegna"
+    t.string   "num_foto"
+    t.string   "durata_video"
+    t.text     "imprevisti"
+    t.text     "cancellazione"
+    t.integer  "foto_cerimonia"
+    t.integer  "video_cerimonia"
+    t.integer  "foto_pre"
+    t.integer  "foto_post"
+    t.integer  "video_pre"
+    t.integer  "video_post"
+    t.integer  "second_camera"
+    t.integer  "second_videocamera"
+    t.integer  "album"
+    t.integer  "mini_album"
+    t.integer  "foto_hd"
+    t.integer  "negativi"
+    t.integer  "dvd"
+    t.integer  "trailer_foto"
+    t.integer  "trailer_video"
+    t.integer  "drone"
+    t.text     "messaggio"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "reservations", ["photographer_id"], name: "index_reservations_on_photographer_id"
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

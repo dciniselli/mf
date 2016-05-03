@@ -1,0 +1,190 @@
+<%= form_for ([@photographer, @photographer.reservations.new]) do |f| %>
+
+	<div class="row">
+		<div class="col-md-12">
+		
+			<!-- servizi -->
+			<% if (!@photographer.foto_cerimonia.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :foto_cerimonia, {class: "form-checkbox"}, @photographer.foto_cerimonia, nil %> Foto cerimonia: €<%= @photographer.foto_cerimonia %>
+				</div>
+			<% end %>
+			<% if (!@photographer.video_cerimonia.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :video_cerimonia, {class: "form-checkbox"}, @photographer.video_cerimonia, nil %> Video cerimonia: €<%= @photographer.video_cerimonia %>
+				</div>
+			<% end %>
+			<% if (!@photographer.foto_pre.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :foto_pre, {class: "form-checkbox"}, @photographer.foto_pre, nil %> Foto pre-cerimonia: €<%= @photographer.foto_pre %>
+				</div>
+			<% end %>
+			<% if (!@photographer.video_pre.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :video_pre, {class: "form-checkbox"}, @photographer.video_pre, nil %> Video pre-cerimonia: €<%= @photographer.video_pre %>
+				</div>
+			<% end %>
+			<% if (!@photographer.foto_post.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :foto_post, {class: "form-checkbox"}, @photographer.foto_post, nil %> Foto post-cerimonia: €<%= @photographer.foto_post %>
+				</div>
+			<% end %>
+			<% if (!@photographer.video_post.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :video_post, {class: "form-checkbox"}, @photographer.video_post, nil %> Video post-cerimonia: €<%= @photographer.video_post %>
+				</div>
+			<% end %>
+			<% if (!@photographer.second_camera.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :second_camera, {class: "form-checkbox"}, @photographer.second_camera, nil %> Fotografo addizionale: €<%= @photographer.second_camera %>
+				</div>
+			<% end %>
+			<% if (!@photographer.second_videocamera.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :second_videocamera, {class: "form-checkbox"}, @photographer.second_videocamera, nil %> Cameraman addizionale: €<%= @photographer.second_videocamera %>
+				</div>
+			<% end %>
+				<!-- prodotti -->
+			<% if (!@photographer.foto_hd.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :foto_hd, {class: "form-checkbox"}, @photographer.foto_hd, nil %> Consegna foto via web €<%= @photographer.foto_hd %>
+				</div>
+			<% end %>
+			<% if (!@photographer.negativi.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :negativi, {class: "form-checkbox"}, @photographer.negativi, nil %> Consegna negativi: €<%= @photographer.negativi %>
+				</div>
+			<% end %>
+			<% if (!@photographer.trailer_foto.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :trailer_foto, {class: "form-checkbox"}, @photographer.trailer_foto, nil %> Trailer fotografico: €<%= @photographer.trailer_foto %>
+				</div>
+			<% end %>
+			<% if (!@photographer.trailer_video.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :trailer_video, {class: "form-checkbox"}, @photographer.trailer_video, nil %> Trailer video: €<%= @photographer.trailer_video %>
+				</div>
+			<% end %>
+			<% if (!@photographer.drone.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :drone, {class: "form-checkbox"}, @photographer.drone, nil %> Drone: €<%= @photographer.drone %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+
+	<!-- prodotti numerici -->
+	<div class="row">
+		<% if (!@photographer.album.blank?) %>
+			<div class="col-md-4">
+				<div class="form-group">
+					<%= f.number_field :album, class: "form-control", min: 0, id: "album", placeholder: "Quanti album desideri?" %> Album: €<%= @photographer.album %> cada uno
+				</div>
+			</div>
+		<% end %>
+		<% if (!@photographer.mini_album.blank?) %>
+			<div class="col-md-4">
+				<div class="form-group">
+					<%= f.number_field :mini_album, class: "form-control", min: 0, id: "mini_album",placeholder: "Quanti mini-album desideri?" %> Mini album: €<%= @photographer.mini_album %> cada uno
+				</div>
+			</div>
+		<% end %>
+		<% if (!@photographer.dvd.blank?) %>
+			<div class="col-md-4">
+				<div class="form-group">
+					<%= f.number_field :dvd, class: "form-control", min: 0, id: "dvd", placeholder: "Quanti dvd desideri?" %> Consegna Dvd: €<%= @photographer.dvd %> cada uno
+				</div>
+			</div>
+		<% end %>
+	</div>
+
+
+	<%= f.hidden_field :photographer_id, value: @photographer.id %>
+	<%= f.hidden_field :tempi_consegna, value: @photographer.tempi_consegna %>
+	<%= f.hidden_field :num_foto, value: @photographer.num_foto %>
+	<%= f.hidden_field :durata_video, value: @photographer.durata_video %>
+	<%= f.hidden_field :imprevisti, value: @photographer.imprevisti %>
+	<%= f.hidden_field :cancellazione, value: @photographer.imprevisti %>
+	<%= f.hidden_field :status, value: "richiesta" %>
+	<%= f.hidden_field :total, value: 0, id: "total_value" %>
+
+
+	<!-- info base -->
+	<div class="row">
+		<div class="col-md-8">
+			<div class="form-group">
+				<%= f.text_field :indirizzo, class: "form-control", placeholder: "Indirizzo matrimonio (obbligatiorio)" %>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.text_field :data, class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<%= f.text_area :messaggio, rows: 5, col: 25, class: "form-control", placeholder: "Aggiungi un messaggio per il fotografo (opzionale)" %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<h3>Total: <span id="total_text">0</span> €</h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="form-group">
+				<%= f.submit "Invia richiesta", class: "btn btn-primary btn-block" %>
+			</div>
+		</div>
+	</div>
+	
+<% end %>
+
+
+
+<script>
+
+	$(function () {
+		var servizi = document.getElementsByClassName("form-checkbox");
+
+		for (var i = 0, len = servizi.length; i < len; i++) {
+		    servizi[i].onclick = updateTotal;
+		}
+
+	});
+
+	function updateTotal(e) {
+	    var total = parseInt(document.getElementById("total_value").value);
+	    var value = this.value;
+	    
+	    if (this.checked) {
+	        total += parseInt(value);
+	    } else {
+	        total -= parseInt(value);
+	    }
+
+	    $("#total_text").text(total);
+	    $("#total_value").val(total);
+	    console.log(total);
+
+	}
+</script>
+
+
+
+
+
+<script>
+	$(function() {
+
+		$('#reservation_data').datepicker({
+			dateformat: 'dd-mm-yy',
+			minDate: 0
+		});
+	});
+</script>

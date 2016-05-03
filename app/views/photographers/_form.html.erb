@@ -10,22 +10,31 @@
 			<div class="container">
 
 				<!-- Info base -->
+				<hr>
+				<div class="row">
+					<h4>Benvenuto tra i fotografi di Matrifoto! Per favore inserisci le tue informazioni base</h4>
+				</div>
+				<hr>
 				<div class="row">
 					<div class="form-group">
 						<label>Titolo (obbligatorio)</label>
 						<%= f.text_field :titolo, autofocus: true, class: "form-control", placeholder: "Cattura l'attenzione in 140 caratteri" %>
 					</div>
 					<div class="form-group">
-						<label>Descrizione (obbligatorio)</label>
-						<%= f.text_area :descrizione, rows: 7, cols: 25, class: "form-control", placeholder: "Descrivi più nel dettaglio la tua attività. Quali servizi offri? Cosa ti distingue dalla concorrenza? Perché i promessi sposi dovrebbere sceglierti? Non è consentito includere i tuoi dati di contatto (numero di telefono, email, sito web, etc.)" %>
-					</div>
-					<div class="form-group">
 						<label>Indirizzo (obbligatorio)</label>
 						<%= f.text_field :indirizzo, class: "form-control", placeholder: "Dove ti trovi?" %>
 					</div>
 					<div class="form-group">
+						<label>Descrizione (obbligatorio)</label>
+						<%= f.text_area :descrizione, rows: 7, cols: 25, class: "form-control", placeholder: "Descrivi più nel dettaglio la tua attività. Quali servizi offri? Cosa ti distingue dalla concorrenza? Perché i promessi sposi dovrebbere sceglierti? Non è consentito includere i tuoi dati di contatto (numero di telefono, email, sito web, etc.)" %>
+					</div>
+					<div class="form-group">
 						<label>Gestione imprevisti (obbligatorio)</label>
 						<%= f.text_area :imprevisti, rows: 3, cols: 25, class: "form-control", placeholder: "Come ti comporti in caso di imprevisti?" %>
+					</div>
+					<div class="form-group">
+						<label>Politica di cancellazione (obbligatorio)</label>
+						<%= f.text_area :cancellazione, rows: 3, cols: 25, class: "form-control", placeholder: "Come ti comporti se il cliente cancella la prenotazione?" %>
 					</div>
 					<div class="form-group">
 						<label>Tempi di consegna (obbligatorio)</label>
@@ -42,61 +51,74 @@
 				</div>
 
 				<!-- Prezzi servizi -->
+				<hr>
+				<div class="row">
+					<h4>Seleziona i servizi che offri ed il loro prezzo</h4>
+				</div>
+				<hr>
 				<div class="row">
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('foto_cerimonia').disabled=!this.checked;">
 						<label>Foto della cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :foto_cerimonia, class: "form-control", placeholder: "Quanto chiedi per le foto della cerimonia?" %>
+							<%= f.number_field :foto_cerimonia, class: "form-control", placeholder: "Quanto chiedi per le foto della cerimonia?", id: "foto_cerimonia", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('video_cerimonia').disabled=!this.checked;">
 						<label>Video della cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :video_cerimonia, class: "form-control", placeholder: "Quanto chiedi per il video della cerimonia?" %>
+							<%= f.number_field :video_cerimonia, class: "form-control", placeholder: "Quanto chiedi per il video della cerimonia?", id: "video_cerimonia", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('foto_pre').disabled=!this.checked;">
 						<label>Foto pre-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :foto_pre, class: "form-control", placeholder: "Quanto chiedi per le foto pre-cerimonia?" %>
+							<%= f.number_field :foto_pre, class: "form-control", placeholder: "Quanto chiedi per le foto pre-cerimonia?", id: "foto_pre", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('video_pre').disabled=!this.checked;">
 						<label>Video pre-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :video_pre, class: "form-control", placeholder: "Quanto chiedi per il video pre-cerimonia?" %>
+							<%= f.number_field :video_pre, class: "form-control", placeholder: "Quanto chiedi per il video pre-cerimonia?", id: "video_pre", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('foto_post').disabled=!this.checked;">
 						<label>Foto post-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :foto_post, class: "form-control", placeholder: "Quanto chiedi per le foto post-cerimonia?" %>
+							<%= f.number_field :foto_post, class: "form-control", placeholder: "Quanto chiedi per le foto post-cerimonia?", id: "foto_post", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('video_post').disabled=!this.checked;">
 						<label>Video post-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :video_post, class: "form-control", placeholder: "Quanto chiedi per il video post-cerimonia?" %>
+							<%= f.number_field :video_post, class: "form-control", placeholder: "Quanto chiedi per il video post-cerimonia?", id: "video_post", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('second_camera').disabled=!this.checked;">
 						<label>Fotografo addizionale</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :second_camera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un fotografo addizionale?" %>
+							<%= f.number_field :second_camera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un fotografo addizionale?", id: "second_camera", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('second_videocamera').disabled=!this.checked;">
 						<label>Cameraman addizionale</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :second_videocamera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un cameraman addizionale?" %>
+							<%= f.number_field :second_videocamera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un cameraman addizionale?", id: "second_videocamera", disabled: "true" %>
 						</div>
 					</div>
 				</div>
@@ -104,59 +126,67 @@
 				<!-- Prezzi prodotti -->
 				<div class="row">
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('album').disabled=!this.checked;">
 						<label>Album fotografico</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :album, class: "form-control", placeholder: "Quanto chiedi per la consegna di un album fotografico?" %>
+							<%= f.number_field :album, class: "form-control", placeholder: "Quanto chiedi per la consegna di un album fotografico?", id: "album", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('mini_album').disabled=!this.checked;">
 						<label>Mini album fotografico</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :mini_album, class: "form-control", placeholder: "Quanto chiedi per la consegna di un mini album fotografico?" %>
+							<%= f.number_field :mini_album, class: "form-control", placeholder: "Quanto chiedi per la consegna di un mini album fotografico?", id: "mini_album", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('foto_hd').disabled=!this.checked;">
 						<label>Consegna HD via web</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :foto_hd, class: "form-control", placeholder: "Quanto chiedi per la consegna del lavoro in HD via web?" %>
+							<%= f.number_field :foto_hd, class: "form-control", placeholder: "Quanto chiedi per la consegna del lavoro in HD via web?", id: "foto_hd", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('negativi').disabled=!this.checked;">
 						<label>Consegna negativi</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :negativi, class: "form-control", placeholder: "Quanto chiedi per la consegna dei negativi?" %>
+							<%= f.number_field :negativi, class: "form-control", placeholder: "Quanto chiedi per la consegna dei negativi?", id: "negativi", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('dvd').disabled=!this.checked;">
 						<label>Consegna HD su dvd</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :dvd, class: "form-control", placeholder: "Quanto chiedi per la consegna del lavoro in HD su dvd o blue-ray?" %>
+							<%= f.number_field :dvd, class: "form-control", placeholder: "Quanto chiedi per la consegna del lavoro in HD su dvd o blue-ray?", id: "dvd", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('trailer_foto').disabled=!this.checked;">
 						<label>Realizzazione trailer fotografico</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :trailer_foto, class: "form-control", placeholder: "Quanto chiedi per la realizzazione di un trailer con le foto scattate?" %>
+							<%= f.number_field :trailer_foto, class: "form-control", placeholder: "Quanto chiedi per la realizzazione di un trailer con le foto scattate?", id: "trailer_foto", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('trailer_video').disabled=!this.checked;">
 						<label>Realizzazione trailer video</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :trailer_video, class: "form-control", placeholder: "Quanto chiedi per la realizzazione di un trailer con le clip video registrate?" %>
+							<%= f.number_field :trailer_video, class: "form-control", placeholder: "Quanto chiedi per la realizzazione di un trailer con le clip video registrate?", id: "trailer_video", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('drone').disabled=!this.checked;">
 						<label>Drone</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.text_field :drone, class: "form-control", placeholder: "Quanto chiedi per effettuare riprese aeree con l'ausilio di un drone?" %>
+							<%= f.number_field :drone, class: "form-control", placeholder: "Quanto chiedi per effettuare riprese aeree con l'ausilio di un drone?", id: "drone", disabled: "true" %>
 						</div>
 					</div>
 				</div>

@@ -27,3 +27,8 @@ en:
             current_password:
               blank: "obbligatoria"
               invalid: "non valida"
+        photographer:
+          attributes:
+            titolo:
+              blank: "obbligatorio"
+            
