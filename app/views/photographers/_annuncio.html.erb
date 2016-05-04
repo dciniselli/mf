@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-3 text-center">
 				<% if (current_user.id == @photographer.user_id) %>
-					<%= link_to "Modifica annuncio", edit_photographer_path(current_user.photographer), class: "btn btn-primary" %>
+					<%= link_to "Modifica annuncio", edit_photographer_path(current_user.photographer), class: "btn btn-primary btn-block" %>
 				<% else %>
 					<% if @photographer.user.avatar? %>
 						<%= image_tag @photographer.user.avatar(:thumb), class: "img-circle avatar-large" %>
@@ -20,8 +20,10 @@
 			</div>
 
 			<div class="col-md-9" >
-				<h4><%= @photographer.titolo %></h4>
-				<%= @photographer.indirizzo %>
+				<div class="row">
+					<h4><%= @photographer.nome %></h4>
+					<h5><%= @photographer.titolo %></h5>
+				</div>
 			</div>
 		</div>
 
@@ -71,27 +73,23 @@
 						<!-- Info secondarie -->
 						<div class="row text-center row-space-1">
 							<div class="col-sm-4">
-								<i class="fa fa-clock-o fa-2x"></i>
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-camera fa-2x"></i>
-							</div>
-							<div class="col-sm-4">
-								<i class="fa fa-video-camera fa-2x"></i>
-							</div>
-						</div>
-
-						<div class="row text-center">
-							<div class="col-sm-4">
+								<i class="fa fa-clock-o fa-2x"></i><br>
 								Consegna in <%= @photographer.tempi_consegna %>
 							</div>
 							<div class="col-sm-4">
+								<i class="fa fa-camera fa-2x"></i><br>
 								Foto consegnate: <%= @photographer.num_foto %>
 							</div>
 							<div class="col-sm-4">
+								<i class="fa fa-video-camera fa-2x"></i><br>
 								Durata video: <%= @photographer.durata_video %>
 							</div>
 						</div>
+
+						<hr>
+
+						<h4>indirizzo</h4>
+						<p><%= @photographer.indirizzo %></p>
 
 						<hr>
 
@@ -108,11 +106,8 @@
 
 						<hr>
 
-
-				<!-- spazio a dx -->
 				<div class="row">
 					<div class="col-md-12">
-						<!-- Preventivo -->
 						<%= render 'reservations/form' %>
 					</div>
 				</div>

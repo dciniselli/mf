@@ -1,4 +1,3 @@
-<script type="text/javascript" src='validate.js'></script>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		I tuoi dati
@@ -17,8 +16,12 @@
 				<hr>
 				<div class="row">
 					<div class="form-group">
+						<label>Nome (obbligatorio)</label>
+						<%= f.text_field :nome, autofocus: true, class: "form-control", placeholder: "Inserisci il nome della tua impresa" %>
+					</div>
+					<div class="form-group">
 						<label>Titolo (obbligatorio)</label>
-						<%= f.text_field :titolo, autofocus: true, class: "form-control", placeholder: "Cattura l'attenzione in 140 caratteri" %>
+						<%= f.text_field :titolo, class: "form-control", placeholder: "Cattura l'attenzione in 140 caratteri" %>
 					</div>
 					<div class="form-group">
 						<label>Indirizzo (obbligatorio)</label>

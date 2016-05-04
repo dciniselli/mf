@@ -3,12 +3,30 @@
 		<ul class="sidebar-list">
 			<li class="sidebar-item"><%= link_to "Il tuo annuncio", photographers_path, class: "sidebar-link active" %></li>
 			<li class="sidebar-item"><%= link_to "Modifica l'annuncio", edit_photographer_path(current_user.photographer), class: "sidebar-link" %></li>
-			<li class="sidebar-item"><%= link_to "Le tue prenotazioni", "#", class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Le tue prenotazioni", my_reservations_path, class: "sidebar-link" %></li>
 		</ul>
 	</div>
 
 
 	<div class="col-md-9">
-		<%= render 'annuncio' %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Il tuo annuncio
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-2">
+						<%= image_tag @photographer.photos[0].image.url(:thumb) %>
+					</div>
+					<div class="col-md-7">
+						<h4><%= @photographer.titolo %></h4>
+					</div>
+					<div class="col-md-3">
+						<%= link_to "Visualizza", photographer_path(current_user.photographer), class: "btn btn-primary btn-block" %><br>
+						<%= link_to "Modifica", edit_photographer_path(current_user.photographer), class: "btn btn-primary btn-block" %>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

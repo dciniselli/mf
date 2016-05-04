@@ -16,6 +16,14 @@ class ReservationsController < ApplicationController
 		@client = @reservation.user_id
 	end
 
+	def my_requests
+		@requests = current_user.reservations
+	end
+
+	def my_reservations
+		@photographer = current_user.photographer
+	end
+
 
 	private	    
 		def reservation_params

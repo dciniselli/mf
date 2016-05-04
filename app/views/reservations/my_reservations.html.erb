@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-3">
+		<ul class="sidebar-list">
+			<li class="sidebar-item"><%= link_to "Il tuo annuncio", photographers_path, class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Modifica l'annuncio", edit_photographer_path(current_user.photographer), class: "sidebar-link" %></li>
+			<li class="sidebar-item"><%= link_to "Le tue prenotazioni", my_reservations_path, class: "sidebar-link active" %></li>
+		</ul>
+	</div>
+
+
+	<div class="col-md-9">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Richieste ricevute
+			</div>
+			<div class="panel-body">
+				
+				<% @photographer.reservations.each do |reservation| %>
+						<div class="row">
+							<div class="col-md-2">
+								<%= image_tag avatar_url(reservation.user), class: "img-circle avatar-medium" %>
+							</div>
+							<div class="col-md-6">
+								<h4><%= reservation.user.nome %></h4><br>
+								<%= reservation.messaggio if !reservation.messaggio.blank? %>
+							</div>
+							<div class="col-md-2 right">
+								<h4>€ <%= reservation.total %></h4>
+							</div>
+							<div class="col-md-2">
+								<%= reservation.status %> il <%= reservation.updated_at.strftime('%d-%m-%Y') %><br>
+								<%= link_to "Rispondi", "#", class: "btn btn-primary"%>
+							</div>
+						</div>
+					<hr>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
