@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 20160501120518) do
     t.integer  "trailer_video"
     t.integer  "drone"
     t.text     "messaggio"
+    t.integer  "num_album"
+    t.integer  "num_mini_album"
+    t.integer  "num_dvd"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end

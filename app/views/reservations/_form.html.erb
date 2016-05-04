@@ -79,21 +79,21 @@
 		<% if (!@photographer.album.blank?) %>
 			<div class="col-md-4">
 				<div class="form-group">
-					<%= f.number_field :album, class: "form-control", min: 0, id: "album", placeholder: "Quanti album desideri?" %> Album: €<%= @photographer.album %> cada uno
+					<%= f.number_field :num_album, class: "form-control", min: 0, id: "album", placeholder: "Quanti album desideri?" %> Album: €<%= @photographer.album %> cada uno
 				</div>
 			</div>
 		<% end %>
 		<% if (!@photographer.mini_album.blank?) %>
 			<div class="col-md-4">
 				<div class="form-group">
-					<%= f.number_field :mini_album, class: "form-control", min: 0, id: "mini_album",placeholder: "Quanti mini-album desideri?" %> Mini album: €<%= @photographer.mini_album %> cada uno
+					<%= f.number_field :num_mini_album, class: "form-control", min: 0, id: "mini_album", placeholder: "Quanti mini-album desideri?" %> Mini album: €<%= @photographer.mini_album %> cada uno
 				</div>
 			</div>
 		<% end %>
 		<% if (!@photographer.dvd.blank?) %>
 			<div class="col-md-4">
 				<div class="form-group">
-					<%= f.number_field :dvd, class: "form-control", min: 0, id: "dvd", placeholder: "Quanti dvd desideri?" %> Consegna Dvd: €<%= @photographer.dvd %> cada uno
+					<%= f.number_field :num_dvd, class: "form-control", min: 0, id: "dvd", placeholder: "Quanti dvd desideri?" %> Dvd: €<%= @photographer.dvd %> cada uno
 				</div>
 			</div>
 		<% end %>
@@ -105,9 +105,17 @@
 	<%= f.hidden_field :num_foto, value: @photographer.num_foto %>
 	<%= f.hidden_field :durata_video, value: @photographer.durata_video %>
 	<%= f.hidden_field :imprevisti, value: @photographer.imprevisti %>
-	<%= f.hidden_field :cancellazione, value: @photographer.imprevisti %>
+	<%= f.hidden_field :cancellazione, value: @photographer.cancellazione %>
+	<%= f.hidden_field :album, value: @photographer.album, id: "album_value" %>
+	<%= f.hidden_field :mini_album, value: @photographer.mini_album, id: "mini_album_value" %>
+	<%= f.hidden_field :dvd, value: @photographer.dvd, id: "dvd_value" %>
 	<%= f.hidden_field :status, value: "richiesta" %>
+	
 	<%= f.hidden_field :total, value: 0, id: "total_value" %>
+	<input type="hidden" id="total_album" value="0" />
+	<input type="hidden" id="total_mini_album" value="0" />
+	<input type="hidden" id="total_dvd" value="0" />
+	<input type="hidden" id="total_services" value="0" />
 
 
 	<!-- info base -->
@@ -153,13 +161,22 @@
 		var servizi = document.getElementsByClassName("form-checkbox");
 
 		for (var i = 0, len = servizi.length; i < len; i++) {
-		    servizi[i].onclick = updateTotal;
+		    servizi[i].onclick = addServices;
 		}
+
+		var album = document.getElementById("album");
+			album.onchange = addAlbum;
+
+		var mini_album = document.getElementById("mini_album");
+			mini_album.onchange = addMiniAlbum;
+
+		var dvd = document.getElementById("dvd");
+			dvd.onchange = addDvd;
 
 	});
 
-	function updateTotal(e) {
-	    var total = parseInt(document.getElementById("total_value").value);
+	function addServices() {
+	    var total = parseInt(document.getElementById("total_services").value);
 	    var value = this.value;
 	    
 	    if (this.checked) {
@@ -168,9 +185,53 @@
 	        total -= parseInt(value);
 	    }
 
-	    $("#total_text").text(total);
-	    $("#total_value").val(total);
-	    console.log(total);
+	    $("#total_services").val(total);
+	    addTotal();
+	}
+
+	function addAlbum() {
+	    var total = parseInt(document.getElementById("total_album").value);
+	    var num = this.value;
+	    var price = parseInt(document.getElementById("album_value").value);
+
+	    total = 1 * parseInt(num) * parseInt(price);
+
+	    $("#total_album").val(total);
+	    addTotal();
+	}
+
+		function addMiniAlbum() {
+	    var total = parseInt(document.getElementById("total_mini_album").value);
+	    var num = this.value;
+	    var price = parseInt(document.getElementById("mini_album_value").value);
+
+	    total = 1 * parseInt(num) * parseInt(price);
+
+	    $("#total_mini_album").val(total);
+	    addTotal();
+	}
+
+		function addDvd() {
+	    var total = parseInt(document.getElementById("total_dvd").value);
+	    var num = this.value;
+	    var price = parseInt(document.getElementById("dvd_value").value);
+
+	    total = 1 * parseInt(num) * parseInt(price);
+
+	    $("#total_dvd").val(total);
+	    addTotal();
+	}
+
+	function addTotal() {
+		var total_services = parseInt(document.getElementById("total_services").value);
+		var total_album = parseInt(document.getElementById("total_album").value);
+		var total_mini_album = parseInt(document.getElementById("total_mini_album").value);
+		var total_dvd = parseInt(document.getElementById("total_dvd").value);
+		var total = parseInt(total_services)+parseInt(total_album)+parseInt(total_mini_album)+parseInt(total_dvd);
+
+		$("#total_value").val(total);
+		$("#total_text").text(total);
+		console.log(total)
 
 	}
 </script>

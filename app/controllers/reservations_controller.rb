@@ -19,6 +19,6 @@ class ReservationsController < ApplicationController
 
 	private	    
 		def reservation_params
-			params.require(:reservation).permit(:photographer_id, :data, :indirizzo, :status, :tempi_consegna, :num_foto, :durata_video, :imprevisti, :cancellazione, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, :second_camera, :second_videocamera, :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, :drone, :total, :messaggio)
+			params.require(:reservation).permit(:photographer_id, :data, :indirizzo, :status, :tempi_consegna, :num_foto, :durata_video, :imprevisti, :cancellazione, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, :second_camera, :second_videocamera, :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, :drone, :total, :messaggio, :num_album, :num_mini_album, :num_dvd)
 		end
 end

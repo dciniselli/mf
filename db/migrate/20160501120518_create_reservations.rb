@@ -29,6 +29,9 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :trailer_video
       t.integer :drone
       t.text :messaggio
+      t.integer :num_album
+      t.integer :num_mini_album
+      t.integer :num_dvd
 
       t.timestamps null: false
     end
