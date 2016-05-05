@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-md-12">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Le tue conversazioni
+			</div>
+			<div class="panel-body">
+				<div class="container">
+					<% @conversations.each do |conversation| %>
+						<% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
+						<%= link_to conversation_messages_path(conversation) do %>
+							<div class="row list-item">
+								<div class="col-md-2">
+									<% if other.avatar? %>
+										<%= image_tag other.avatar(:medium), class: "img-circle avatar-medium" %>&nbsp;
+									<% elsif other.image? %>
+										<%= image_tag avatar_url(other), class: "img-circle avatar-medium" %>&nbsp;
+									<% else %>
+										<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-medium" %>&nbsp;
+									<% end %>
+								</div>
+								<div class="col-md-2">
+									<%= other.nome %>
+									<%= conversation.messages.last.message_time %>
+								</div>
+								<div class="col-md-8">
+									<%= conversation.messages.last.messaggio %>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<h3>Tutti gli utenti</h3>
+		<% @users.each do |user| %>
+			<% if user != current_user %>
+				<%= user.nome %>
+				<%= link_to "Invia messaggio", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
+			<% end %>
+		<% end %>
+		<br>
+
+	</div>
+</div>

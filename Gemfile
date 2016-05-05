@@ -11,14 +11,16 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.6'
-gem 'devise'
+gem 'devise' #gestione profili
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'figaro'
-gem 'paperclip'
+gem 'figaro' #nascondi psw a git
+gem 'paperclip' #upload photos
 gem 'rails_12factor', group: :production
-gem 'pg', group: :production
+gem 'pg', group: :production #per heroku
 gem 'jquery-ui-rails'
+gem 'private_pub' #realtime messages
+gem 'thin' #realtime messages
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

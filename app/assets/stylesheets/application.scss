@@ -220,3 +220,12 @@ input[type="checkbox"]:checked:before {
 .panel-heading.preview img{
 	width: 100%;
 }
+
+.list-item {
+	color: #7f7f7f;
+	padding: 10px;
+}
+
+.list-item:hover, list-item:focus {
+	background-color: #f4f4f5;
+}

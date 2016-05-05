@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create, :show]
   end
 
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
+
   get '/my_requests' => 'reservations#my_requests'
   get '/my_reservations' => 'reservations#my_reservations'
 

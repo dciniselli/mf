@@ -17,7 +17,8 @@
 			<div class="panel-body">
 				
 				<% @requests.each do |request| %>
-						<div class="row">
+					<%= link_to photographer_path(request.photographer) do %>
+						<div class="row list-item">
 							<div class="col-md-2">
 								<%= image_tag request.photographer.photos[0].image.url(:thumb) %>
 							</div>
@@ -30,10 +31,9 @@
 							</div>
 							<div class="col-md-2">
 								<%= request.status %> il <%= request.updated_at.strftime('%d-%m-%Y') %><br>
-								<%= link_to "Visualizza", photographer_path(request.photographer), class: "btn btn-primary"%>
 							</div>
 						</div>
-					<hr>
+					<% end %>
 				<% end %>
 			</div>
 		</div>

@@ -1,0 +1,18 @@
+<div class="panel">
+	<div class="panel-body">
+		<% if message.user.avatar? %>
+			<%= image_tag message.user.avatar(:thumb), class: "img-circle avatar-small" %>&nbsp;
+		<% elsif message.user.image? %>
+			<%= image_tag avatar_url(message.user), class: "img-circle avatar-small" %>&nbsp;
+		<% else %>
+			<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-small" %>&nbsp;
+		<% end %>
+		<strong><%= message.user.nome %></strong>
+
+		<span class="pull-right"><%= message.message_time %></span>
+		<br>
+		<div class="row-space-2">
+			<%= simple_format(message.messaggio) %>
+		</div>
+	</div>
+</div>

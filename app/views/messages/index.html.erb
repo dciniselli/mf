@@ -1,0 +1,46 @@
+<div class="row">
+
+	<div class="col-md-9 col-md-push-3">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Conversazione con <%= @other.nome %>
+			</div>
+			<div class="panel-body">
+				<div class="container">
+
+					<%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
+						<div class="form-group">
+							<%= f.text_area :messaggio, placeholder: "Scrivi un messaggio", class: "form-control" %>
+						</div>
+						<%= f.hidden_field :user_id, value: current_user.id %>
+
+						<div class="actions">
+							<%= f.submit "Invia messaggio", class: "btn btn-primary" %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div id="chat">
+			<%= render @messages, locals: {conversation: @conversation} %>
+		</div>
+
+	</div>
+
+	<div class="col-md-3 col-md-pull-9 text-center">
+		<% if @other.avatar? %>
+			<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
+		<% elsif @other.image? %>
+			<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
+		<% else %>
+			<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+		<% end %>
+		<br>
+		<strong><%= @other.nome %></strong>
+		<%= link_to "Visualizza profilo", @other, class: "btn btn-default btn-block" %>
+	</div>
+</div>
+
+<%= subscribe_to conversation_messages_path(@conversation) %>
