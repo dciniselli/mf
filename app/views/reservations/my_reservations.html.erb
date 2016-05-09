@@ -15,8 +15,8 @@
 			</div>
 			<div class="panel-body">
 				
-				<% @photographer.reservations.each do |reservation| %>
-					<%= link_to my_reservations_path do %>
+				<% @photographer.user.reservations.each do |reservation| %>
+					<%= link_to photographer_reservation_path(reservation.photographer, reservation) do %>
 						<div class="row list-item">
 							<div class="col-md-2">
 								<% if reservation.user.avatar? %>

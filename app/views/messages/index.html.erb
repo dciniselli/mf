@@ -11,7 +11,7 @@
 
 					<%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
 						<div class="form-group">
-							<%= f.text_area :messaggio, placeholder: "Scrivi un messaggio", class: "form-control" %>
+							<%= f.text_area :messaggio, rows: 5, cols: 25, placeholder: "Scrivi un messaggio", class: "form-control" %>
 						</div>
 						<%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -40,6 +40,10 @@
 		<br>
 		<strong><%= @other.nome %></strong>
 		<%= link_to "Visualizza profilo", @other, class: "btn btn-default btn-block" %>
+
+		<% if @reservation %>
+			<h4><%= @reservation.status %></h4>
+		<% end %>
 	</div>
 </div>
 

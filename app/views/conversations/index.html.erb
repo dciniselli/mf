@@ -21,11 +21,16 @@
 									<% end %>
 								</div>
 								<div class="col-md-2">
-									<%= other.nome %>
+									<%= other.nome %><br>
 									<%= conversation.messages.last.message_time %>
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-6">
 									<%= conversation.messages.last.messaggio %>
+								</div>
+								<div class="col-md-2">
+									<% if @reservation %>
+										<h4><%= @reservation.status %></h4>
+									<% end %>
 								</div>
 							</div>
 						<% end %>
@@ -33,15 +38,5 @@
 				</div>
 			</div>
 		</div>
-
-		<h3>Tutti gli utenti</h3>
-		<% @users.each do |user| %>
-			<% if user != current_user %>
-				<%= user.nome %>
-				<%= link_to "Invia messaggio", conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post" %>
-			<% end %>
-		<% end %>
-		<br>
-
 	</div>
 </div>

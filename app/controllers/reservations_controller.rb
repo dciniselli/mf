@@ -5,19 +5,26 @@ class ReservationsController < ApplicationController
 		@reservation = current_user.reservations.create(reservation_params)
 
 		if @reservation.save 
-			redirect_to '/', notice:  "Richiesta inviata!"
+			redirect_to photographer_reservation_path(@reservation.photographer, @reservation), notice:  "Richiesta inviata!"
 	    else
 	      	redirect_to photographer_path(@reservation.photographer_id), alert: "Ops! Si è verificato un errore. Per favore inserisci tutte le informazioni richieste!"
 	    end
 	end
 
 	def show
+		@reservation = Reservation.find(params[:id])
 		@photographer = @reservation.photographer
-		@client = @reservation.user_id
+		@client = @reservation.user
+		
+		if current_user == @photographer.user || current_user == @client
+			@other = current_user == @client ? @photographer.user : @client
+		else
+			redirect_to '/', alert: "Accesso negato"
+		end
 	end
 
 	def my_requests
-		@requests = current_user.reservations
+		@requests = current_user.reservations.order("created_at DESC")
 	end
 
 	def my_reservations

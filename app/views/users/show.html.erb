@@ -19,6 +19,11 @@
 	</div>
 	<div class="col-md-9">
 		<h2><%= @user.nome %></h2>
+		<% if @user.photographer %>
+			<div class="actions">
+				<%= link_to "Questo utente e' un fotografo. Guarda il suo profilo!", photographer_path(@user.photographer), class: "btn btn-primary btn-block" %>
+			</div>
+		<% end %>
 		<div class="description row-space-3">
 			<%= simple_format(@user.descrizione) %>
 		</div>

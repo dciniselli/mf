@@ -94,19 +94,25 @@
 					<div class="col-md-12">
 
 								<!-- Info secondarie -->
-								<div class="row text-center row-space-1">
-									<div class="col-sm-4">
-										<i class="fa fa-clock-o fa-2x"></i><br>
-										Consegna in <%= @photographer.tempi_consegna %>
-									</div>
-									<div class="col-sm-4">
-										<i class="fa fa-camera fa-2x"></i><br>
-										Foto consegnate: <%= @photographer.num_foto %>
-									</div>
-									<div class="col-sm-4">
-										<i class="fa fa-video-camera fa-2x"></i><br>
-										Durata video: <%= @photographer.durata_video %>
-									</div>
+								<div class="row text-center">
+									<% unless @photographer.tempi_consegna.blank? %>
+										<div class="col-md-4">
+											<i class="fa fa-clock-o fa-2x"></i><br>
+											Consegna in <%= @photographer.tempi_consegna %>
+										</div>
+									<% end %>
+									<% unless @photographer.num_foto.blank? %>
+										<div class="col-md-4">
+											<i class="fa fa-camera fa-2x"></i><br>
+											Foto consegnate: <%= @photographer.num_foto %>
+										</div>
+									<% end %>
+									<% unless @photographer.durata_video.blank? %>
+										<div class="col-md-4">
+											<i class="fa fa-video-camera fa-2x"></i><br>
+											Durata video: <%= @photographer.durata_video %>
+										</div>
+									<% end %>
 								</div>
 
 								<hr>

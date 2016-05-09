@@ -1,1 +1,88 @@
-ciao
+<div class="row">
+
+	<div class="col-md-9 col-md-push-3">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Prenotazione
+			</div>
+			<div class="panel-body">
+				<div class="container">
+					<div class="row">
+						<h3>Status: <%= @reservation.status %></h3>
+					</div>
+					<hr>
+					<div class="row">
+						Data matrimonio: <%= @reservation.data.strftime('%d-%m-%Y') %><br>
+						Luogo: <%= @reservation.indirizzo %>
+					</div>
+					<hr>
+					<div class="row">
+						<h4>Servizi:</h4>
+						<div><%= "Foto Cerimonia" unless @reservation.foto_cerimonia.blank? %></div>
+						<div><%= "Video Cerimonia" unless @reservation.video_cerimonia.blank? %></div>
+						<div><%= "Foto Pre-Cerimonia" unless @reservation.foto_pre.blank? %></div>
+						<div><%= "Video Pre-Cerimonia" unless @reservation.video_pre.blank? %></div>
+						<div><%= "Foto Post-Cerimonia" unless @reservation.foto_post.blank? %></div>
+						<div><%= "Video Post-Cerimonia" unless @reservation.video_post.blank? %></div>
+						<div><%= "Fotografo Addizionale" unless @reservation.second_camera.blank? %></div>
+						<div><%= "Cameraman Addizionale" unless @reservation.second_videocamera.blank? %></div>
+						<div><%= "Consegna Foto via Web" unless @reservation.foto_hd.blank? %></div>
+						<div><%= "Consegna Negativi" unless @reservation.negativi.blank? %></div>
+						<div><%= "Trailer Fotografico" unless @reservation.trailer_foto.blank? %></div>
+						<div><%= "Video Trailer" unless @reservation.trailer_video.blank? %></div>
+						<div><%= "Riprese con drone" unless @reservation.drone.blank? %></div>
+						<div><%= @reservation.num_album %> <%= "Album" unless @reservation.num_album.blank? %></div>
+						<div><%= @reservation.num_mini_album %> <%= "Mini-Album" unless @reservation.num_mini_album.blank? %></div>
+						<div><%= @reservation.num_dvd %> <%= "Album" unless @reservation.num_dvd.blank? %></div>
+					</div>
+					<hr>
+					<div class="row">
+						<% unless @reservation.tempi_consegna.blank? %>
+							<div class="col-md-4">
+								<i class="fa fa-clock-o fa-2x"></i><br>
+								Consegna in <%= @reservation.tempi_consegna %>
+							</div>
+						<% end %>
+						<% unless @reservation.num_foto.blank? %>
+							<div class="col-md-4">
+								<i class="fa fa-camera fa-2x"></i><br>
+								Foto consegnate: <%= @reservation.num_foto %>
+							</div>
+						<% end %>
+						<% unless @reservation.durata_video.blank? %>
+							<div class="col-md-4">
+								<i class="fa fa-video-camera fa-2x"></i><br>
+								Durata video: <%= @reservation.durata_video %>
+							</div>
+						<% end %>
+					</div>
+					<hr>
+					<div class="row">
+						<div><h4>Termini di cancellazione:</h4><%= @reservation.cancellazione %></div>
+						<div><h4>Gestione imprevisti:</h4><%= @reservation.imprevisti %></div>
+					</div>
+					<hr>
+					<div class="row">
+						<div><h3>Totale: €<%= @reservation.total %></h3></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="col-md-3 col-md-pull-9 text-center">
+		<% if @other.avatar? %>
+			<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
+		<% elsif @other.image? %>
+			<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
+		<% else %>
+			<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+		<% end %>
+		<br>
+		<strong><%= @other.nome %></strong>
+		<%= link_to "Invia messaggio", conversations_path(sender_id: current_user.id, recipient_id: @other.id), method: "post", class: "btn btn-primary btn-block" %>
+		<%= link_to "Visualizza profilo", @other, class: "btn btn-default btn-block" %>
+	</div>
+</div>

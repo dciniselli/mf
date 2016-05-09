@@ -17,10 +17,12 @@ class PhotographersController < ApplicationController
 
   def create
     @photographer = Photographer.new(photographer_params)
+    @photographer.id = current_user.id
     @photographer.user_id = current_user.id
     
     if @photographer.save 
 
+      #creiamo le foto e le impostiamo come relativa al fotografo
       if params[:images]
         params[:images].each do |image|
           @photographer.photos.create(image: image)

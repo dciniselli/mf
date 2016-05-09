@@ -100,7 +100,7 @@
 	</div>
 
 
-	<%= f.hidden_field :photographer_id, value: @photographer.id %>
+	<%= f.hidden_field :photographer_id, value: @photographer.user.id %>
 	<%= f.hidden_field :tempi_consegna, value: @photographer.tempi_consegna %>
 	<%= f.hidden_field :num_foto, value: @photographer.num_foto %>
 	<%= f.hidden_field :durata_video, value: @photographer.durata_video %>
@@ -127,14 +127,7 @@
 		</div>
 		<div class="col-md-4">
 			<div class="form-group">
-				<%= f.text_field :data, class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="form-group">
-				<%= f.text_area :messaggio, rows: 5, col: 25, class: "form-control", placeholder: "Aggiungi un messaggio per il fotografo (opzionale)" %>
+				<%= f.text_field :data, id: "reservation_data", class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
 			</div>
 		</div>
 	</div>
@@ -244,7 +237,7 @@
 	$(function() {
 
 		$('#reservation_data').datepicker({
-			dateformat: 'dd-mm-yy',
+			dateFormat: 'dd-mm-yy',
 			minDate: 0
 		});
 	});
