@@ -6,7 +6,7 @@
 
 			<% if (@reservation.status == "richiesta") %>
 				<div class="panel banner-status row-space-3">
-					<h4><%= @other.nome %> ti ha inviato una richiesta.</h4><br>
+					<h4><%= @other.nome %> ti ha inviato una richiesta</h4><br>
 					<div class="container">
 						<div class="col-md-4">
 							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>					
@@ -15,10 +15,35 @@
 							<% end %>
 						</div>
 						<div class="col-md-4">
-							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
-								<%= f.hidden_field :status, value: "offerta" %>
-								<%= f.submit "Invia un'offerta", class: "btn btn-default" %>
-							<% end %>
+							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+							  Fai un'offerta
+							</button>
+							<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title">Offerta per <%= @other.nome %></h4>
+							      </div>
+							      <div class="modal-body">
+							        <%= form_for ([@reservation.photographer, @reservation]) do |f| %>
+										
+										<div class="form-group">
+											<div class="input-group">
+												<div class="input-group-addon">€</div>
+												<%= f.number_field :total, class: "form-control", placeholder: "Inserisci la tua offerta"%>
+											</div>
+										</div>
+										<%= f.hidden_field :status, value: "offerta" %>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											<%= f.submit "Invia l'offerta", class: "btn btn-primary" %>
+										</div>
+									<% end %>
+							      </div>
+							    </div><!-- /.modal-content -->
+							  </div><!-- /.modal-dialog -->
+							</div><!-- /.modal -->
 						</div>
 						<div class="col-md-4">
 							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
@@ -32,20 +57,21 @@
 
 			<% if (@reservation.status == "approvata") %>
 				<div class="panel banner-status row-space-3">
-					<h4>Hai pre-approvato l'offerta.</h4>
+					<h4>Hai pre-approvato la richiesta</h4>
 					La prenotazione non e' ancora conclusa. Riceverai una risposta da <%= @other.nome %> entro 24 ore.
 				</div>
 			<% end %>
 
 			<% if (@reservation.status == "offerta") %>
 				<div class="panel banner-status row-space-3">
-					<h4>...</h4>
+					<h4>Hai inviato un'offerta</h4>
+					La prenotazione non e' ancora conclusa. Riceverai una risposta da <%= @other.nome %> entro 24 ore.
 				</div>
 			<% end %>
 
 			<% if (@reservation.status == "rifiutata") %>
 				<div class="panel banner-status row-space-3">
-					<h4>Hai rifiutato l'offerta</h4>
+					<h4>Hai rifiutato la richiesta</h4>
 					Hai rifiutato l'offerta di <%= @other.nome %>. Se hai cambiato idea, prova a scrivergli un messaggio.
 				</div>
 			<% end %>
@@ -82,14 +108,14 @@
 
 			<% if (@reservation.status == "richiesta") %>
 				<div class="panel banner-status row-space-3">
-					<h4>Hai inviato l'offerta.</h4>
+					<h4>Hai inviato la richiesta</h4>
 					La prenotazione non e' ancora conclusa. Riceverai una risposta da <%= @other.nome %> entro 24 ore.
 				</div>
 			<% end %>
 
 			<% if (@reservation.status == "approvata") %>
 				<div class="panel banner-status row-space-3">
-					<h4><%= @other.nome %> ha approvato la tua richiesta.</h4>
+					<h4><%= @other.nome %> ha approvato la tua richiesta</h4>
 					<div class="container">
 						<div class="col-md-6">
 							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>					
@@ -109,13 +135,27 @@
 
 			<% if (@reservation.status == "offerta") %>
 				<div class="panel banner-status row-space-3">
-					<h4>...</h4>
+					<h4><%= @other.nome %> ti ha fatto un'offerta</h4>
+					<div class="container">
+						<div class="col-md-6">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>					
+								<%= f.hidden_field :status, value: "da_pagare" %>
+								<%= f.submit "Conferma la prenotazione", class: "btn btn-primary" %>
+							<% end %>
+						</div>
+						<div class="col-md-6">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
+								<%= f.hidden_field :status, value: "cancellata" %>
+								<%= f.submit "Rifiuta", class: "btn btn-default" %>
+							<% end %>
+						</div>
+					</div>
 				</div>
 			<% end %>
 
 			<% if (@reservation.status == "rifiutata") %>
 				<div class="panel banner-status row-space-3">
-					<h4>La tua offerta e' stata declinata</h4>
+					<h4>La tua richiesta e' stata declinata</h4>
 					<%= @other.nome %> ha declinato la tua richiesta. Prova a trovare un altro fotografo.
 				</div>
 			<% end %>
@@ -156,10 +196,6 @@
 			</div>
 			<div class="panel-body">
 				<div class="container">
-					<div class="row">
-						<h3>Status: <%= @reservation.status %></h3>
-					</div>
-					<hr>
 					<div class="row">
 						Data matrimonio: <%= @reservation.data.strftime('%d-%m-%Y') %><br>
 						Luogo: <%= @reservation.indirizzo %>
