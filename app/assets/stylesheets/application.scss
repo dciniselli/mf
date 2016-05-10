@@ -45,7 +45,6 @@ body {
 .btn-default.btn {
 	border-radius: 2px;
 	padding: 10px 15px 10px 15px;
-	margin-top: 10px;
 }
 
 .panel-default .panel-heading {
@@ -228,4 +227,11 @@ input[type="checkbox"]:checked:before {
 
 .list-item:hover, list-item:focus {
 	background-color: #f4f4f5;
+}
+
+.banner-status {
+	border: 1px solid #dce0e0;
+	text-align: center;
+	padding: 20px;
+	background-color: #fff;
 }

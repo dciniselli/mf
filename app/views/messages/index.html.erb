@@ -2,6 +2,69 @@
 
 	<div class="col-md-9 col-md-push-3">
 
+		<% if @reservation %>
+			<div class="panel banner-status row-space-3">
+				
+				<% if (current_user == @reservation.photographer.user) %>
+					
+					<% if (@reservation.status == "richiesta") %>
+						<h4>Richiesta ricevuta</h4>
+					<% end %>
+					<% if (@reservation.status == "approvata") %>
+						<h4>Richiesta pre-approvata</h4>
+					<% end %>
+					<% if (@reservation.status == "offerta") %>
+						<h4>...</h4>
+					<% end %>
+					<% if (@reservation.status == "rifiutata") %>
+						<h4>Richiesta rifiutata</h4>
+					<% end %>
+					<% if (@reservation.status == "cancellata") %>
+						<h4>Richiesta cancellata</h4>
+					<% end %>
+					<% if (@reservation.status == "da_pagare") %>
+						<h4>Prenotazione in attesa di pagamento</h4>
+					<% end %>
+					<% if (@reservation.status == "completata") %>
+						<h4>Prenotazione confermata</h4>
+					<% end %>
+					<% if (@reservation.status == "scaduta") %>
+						<h4>Offerta scaduta</h4>
+					<% end %>
+				
+				<% else %>
+
+					<% if (@reservation.status == "richiesta") %>
+						<h4>Richiesta ricevuta</h4>
+					<% end %>
+					<% if (@reservation.status == "approvata") %>
+						<h4>Richiesta pre-approvata</h4>
+					<% end %>
+					<% if (@reservation.status == "offerta") %>
+						<h4>...</h4>
+					<% end %>
+					<% if (@reservation.status == "rifiutata") %>
+						<h4>Richiesta rifiutata</h4>
+					<% end %>
+					<% if (@reservation.status == "cancellata") %>
+						<h4>Richiesta cancellata</h4>
+					<% end %>
+					<% if (@reservation.status == "da_pagare") %>
+						<h4>Prenotazione in attesa di pagamento</h4>
+					<% end %>
+					<% if (@reservation.status == "completata") %>
+						<h4>Prenotazione confermata</h4>
+					<% end %>
+					<% if (@reservation.status == "scaduta") %>
+						<h4>Offerta scaduta</h4>
+					<% end %>
+
+				<% end %>
+
+				<%= link_to "Visualizza", photographer_reservation_path(@reservation.photographer, @reservation), class: "btn btn-primary text-center" %>
+			</div>
+		<% end %>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Conversazione con <%= @other.nome %>
@@ -16,7 +79,7 @@
 						<%= f.hidden_field :user_id, value: current_user.id %>
 
 						<div class="actions">
-							<%= f.submit "Invia messaggio", class: "btn btn-primary" %>
+							<%= f.submit "Invia messaggio", class: "btn btn-default" %>
 						</div>
 					<% end %>
 				</div>
@@ -30,20 +93,17 @@
 	</div>
 
 	<div class="col-md-3 col-md-pull-9 text-center">
-		<% if @other.avatar? %>
-			<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
-		<% elsif @other.image? %>
-			<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
-		<% else %>
-			<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+		<%= link_to (@other) do %>
+			<% if @other.avatar? %>
+				<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
+			<% elsif @other.image? %>
+				<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
+			<% else %>
+				<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+			<% end %>
 		<% end %>
 		<br>
-		<strong><%= @other.nome %></strong>
-		<%= link_to "Visualizza profilo", @other, class: "btn btn-default btn-block" %>
-
-		<% if @reservation %>
-			<h4><%= @reservation.status %></h4>
-		<% end %>
+		<%= link_to @other.nome, (@other), class: "sidebar-link" %>
 	</div>
 </div>
 

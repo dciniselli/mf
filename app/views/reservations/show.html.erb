@@ -2,6 +2,154 @@
 
 	<div class="col-md-9 col-md-push-3">
 
+		<% if (current_user == @reservation.photographer.user) %>
+
+			<% if (@reservation.status == "richiesta") %>
+				<div class="panel banner-status row-space-3">
+					<h4><%= @other.nome %> ti ha inviato una richiesta.</h4><br>
+					<div class="container">
+						<div class="col-md-4">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>					
+								<%= f.hidden_field :status, value: "approvata" %>
+								<%= f.submit "Pre-approva", class: "btn btn-primary" %>
+							<% end %>
+						</div>
+						<div class="col-md-4">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
+								<%= f.hidden_field :status, value: "offerta" %>
+								<%= f.submit "Invia un'offerta", class: "btn btn-default" %>
+							<% end %>
+						</div>
+						<div class="col-md-4">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
+								<%= f.hidden_field :status, value: "rifiutata" %>
+								<%= f.submit "Rifiuta", class: "btn btn-default" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "approvata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>Hai pre-approvato l'offerta.</h4>
+					La prenotazione non e' ancora conclusa. Riceverai una risposta da <%= @other.nome %> entro 24 ore.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "offerta") %>
+				<div class="panel banner-status row-space-3">
+					<h4>...</h4>
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "rifiutata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>Hai rifiutato l'offerta</h4>
+					Hai rifiutato l'offerta di <%= @other.nome %>. Se hai cambiato idea, prova a scrivergli un messaggio.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "cancellata") %>
+				<div class="panel banner-status row-space-3">
+					<h4><%= @other.nome %> ha cancellato la sua richiesta</h4>
+					Se pensi che si tratti di un errore, prova a scrivergli un messaggio.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "da_pagare") %>
+				<div class="panel banner-status row-space-3">
+					<h4>In attesa di pagamento</h4>
+					<%= @other.nome %> ha confermato la prenotazione e ha ora 24 ore per pagare la caparra.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "completata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>La prenotazione e' confermata!</h4>
+					<%= @other.nome %> ha pagato la caparra prevista e ha confermato la prenotazione.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "scaduta") %>
+				<div class="panel banner-status row-space-3">
+					<h4>L'offerta e' scaduta</h4>
+					Se non sei riuscito a rispondere in tempo, puoi provare a scrivere un messaggio a <%= @other.nome %>.
+				</div>
+			<% end %>
+
+		<% else %>
+
+			<% if (@reservation.status == "richiesta") %>
+				<div class="panel banner-status row-space-3">
+					<h4>Hai inviato l'offerta.</h4>
+					La prenotazione non e' ancora conclusa. Riceverai una risposta da <%= @other.nome %> entro 24 ore.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "approvata") %>
+				<div class="panel banner-status row-space-3">
+					<h4><%= @other.nome %> ha approvato la tua richiesta.</h4>
+					<div class="container">
+						<div class="col-md-6">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>					
+								<%= f.hidden_field :status, value: "da_pagare" %>
+								<%= f.submit "Conferma la prenotazione", class: "btn btn-primary" %>
+							<% end %>
+						</div>
+						<div class="col-md-6">
+							<%= form_for ([@reservation.photographer, @reservation]) do |f| %>
+								<%= f.hidden_field :status, value: "cancellata" %>
+								<%= f.submit "Cancella", class: "btn btn-default" %>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "offerta") %>
+				<div class="panel banner-status row-space-3">
+					<h4>...</h4>
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "rifiutata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>La tua offerta e' stata declinata</h4>
+					<%= @other.nome %> ha declinato la tua richiesta. Prova a trovare un altro fotografo.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "cancellata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>Hai cancellato la tua richiesta</h4>
+					Se si tratta di un errore, invia un'altra richiesta a <%= @other.nome %>.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "da_pagare") %>
+				<div class="panel banner-status row-space-3">
+					<h4>In attesa di pagamento</h4>
+					Hai confermato la prenotazione, e ora hai 24 ore per pagare la caparra.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "completata") %>
+				<div class="panel banner-status row-space-3">
+					<h4>La prenotazione e' confermata!</h4>
+					<%= @other.nome %> ha accettato la tua richiesta e ha ricevuto la sua caparra.
+				</div>
+			<% end %>
+
+			<% if (@reservation.status == "scaduta") %>
+				<div class="panel banner-status row-space-3">
+					<h4>L'offerta e' scaduta</h4>
+					Se non sei riuscito a rispondere in tempo, invia un'altra richiesta a <%= @other.nome %>.
+				</div>
+			<% end %>
+
+		<% end %>
+
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				Prenotazione
@@ -73,16 +221,17 @@
 
 
 	<div class="col-md-3 col-md-pull-9 text-center">
-		<% if @other.avatar? %>
-			<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
-		<% elsif @other.image? %>
-			<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
-		<% else %>
-			<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+		<%= link_to (@other) do %>
+			<% if @other.avatar? %>
+				<%= image_tag @other.avatar(:medium), class: "img-circle avatar-large" %>&nbsp;
+			<% elsif @other.image? %>
+				<%= image_tag avatar_url(@other), class: "img-circle avatar-large" %>&nbsp;
+			<% else %>
+				<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>&nbsp;
+			<% end %>
 		<% end %>
 		<br>
-		<strong><%= @other.nome %></strong>
-		<%= link_to "Invia messaggio", conversations_path(sender_id: current_user.id, recipient_id: @other.id), method: "post", class: "btn btn-primary btn-block" %>
-		<%= link_to "Visualizza profilo", @other, class: "btn btn-default btn-block" %>
+		<%= link_to @other.nome, (@other), class: "sidebar-link" %>
+		<%= link_to "Invia messaggio", conversations_path(sender_id: current_user.id, recipient_id: @other.id), method: "post", class: "btn btn-default btn-block" %>
 	</div>
 </div>

@@ -15,7 +15,7 @@
 			</div>
 			<div class="panel-body">
 				
-				<% @photographer.user.reservations.each do |reservation| %>
+				<% @photographer.reservations.each do |reservation| %>
 					<%= link_to photographer_reservation_path(reservation.photographer, reservation) do %>
 						<div class="row list-item">
 							<div class="col-md-2">
@@ -29,7 +29,6 @@
 							</div>
 							<div class="col-md-6">
 								<h4><%= reservation.user.nome %></h4><br>
-								<%= reservation.messaggio if !reservation.messaggio.blank? %>
 							</div>
 							<div class="col-md-2 right">
 								<h4>€ <%= reservation.total %></h4>

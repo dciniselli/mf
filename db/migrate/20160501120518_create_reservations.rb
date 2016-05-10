@@ -5,7 +5,7 @@ class CreateReservations < ActiveRecord::Migration
       t.references :photographer, index: true, foreign_key: true
       t.datetime :data
       t.string :indirizzo
-      t.string :status
+      t.integer :status
       t.integer :total
       t.string :tempi_consegna
       t.string :num_foto

@@ -23,6 +23,24 @@ class ReservationsController < ApplicationController
 		end
 	end
 
+	def update
+		@reservation = Reservation.find(params[:id])
+		@photographer = @reservation.photographer
+		@client = @reservation.user
+
+		if current_user == @photographer.user || current_user == @client
+			@other = current_user == @client ? @photographer.user : @client
+		else
+			redirect_to '/', alert: "Accesso negato"
+		end
+
+		if @reservation.update(reservation_params)
+			redirect_to photographer_reservation_path(@reservation.photographer, @reservation), notice:  "Hai risposto a #{@other.nome}!"
+	    else
+	      	redirect_to photographer_reservation_path(@reservation.photographer, @reservation), alert: "Ops! Si è verificato un errore."
+	    end
+	end
+
 	def my_requests
 		@requests = current_user.reservations.order("created_at DESC")
 	end

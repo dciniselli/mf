@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :photos
 
   resources :photographers do
-    resources :reservations, only: [:create, :show]
+    resources :reservations, only: [:create, :show, :update]
   end
 
   resources :conversations, only: [:index, :create] do
