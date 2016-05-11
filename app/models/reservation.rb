@@ -2,6 +2,9 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :photographer
 
+  geocoded_by :indirizzo
+  after_validation :geocode, if: :indirizzo_changed?
+
   validates :data, presence: true
   validates :indirizzo, presence: true
 

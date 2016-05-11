@@ -21,6 +21,7 @@ gem 'pg', group: :production #per heroku
 gem 'jquery-ui-rails'
 gem 'private_pub' #realtime messages
 gem 'thin' #realtime messages
+gem 'geocoder' #location altitudine/longitudine
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

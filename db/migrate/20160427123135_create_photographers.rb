@@ -6,6 +6,7 @@ class CreatePhotographers < ActiveRecord::Migration
       t.text :descrizione
       t.string :indirizzo
       t.text :imprevisti
+      t.text :cancellazione
       t.integer :foto_cerimonia
       t.integer :video_cerimonia
       t.integer :foto_pre
@@ -22,9 +23,11 @@ class CreatePhotographers < ActiveRecord::Migration
       t.integer :trailer_foto
       t.integer :trailer_video
       t.integer :drone
-      t.integer :tempi_consegna
-      t.integer :num_foto
-      t.integer :durata_video
+      t.string :tempi_consegna
+      t.string :num_foto
+      t.string :durata_video
+      t.float :latitude
+      t.float :longitude
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

@@ -31,6 +31,8 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :num_album
       t.integer :num_mini_album
       t.integer :num_dvd
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps null: false
     end
