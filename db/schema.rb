@@ -60,9 +60,16 @@ ActiveRecord::Schema.define(version: 20160511203446) do
     t.string   "durata_video"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "free_km"
+    t.float    "price_km"
+    t.integer  "max_km"
+    t.integer  "prematrimoniale_foto"
+    t.integer  "prematrimoniale_video"
+    t.integer  "trash_dress_foto"
+    t.integer  "trash_dress_video"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "photographers", ["user_id"], name: "index_photographers_on_user_id"
@@ -110,10 +117,15 @@ ActiveRecord::Schema.define(version: 20160511203446) do
     t.integer  "num_album"
     t.integer  "num_mini_album"
     t.integer  "num_dvd"
+    t.integer  "trasferta"
+    t.integer  "prematrimoniale_foto"
+    t.integer  "prematrimoniale_video"
+    t.integer  "trash_dress_foto"
+    t.integer  "trash_dress_video"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   add_index "reservations", ["photographer_id"], name: "index_reservations_on_photographer_id"

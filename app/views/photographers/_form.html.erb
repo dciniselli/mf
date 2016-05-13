@@ -21,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label>Indirizzo (obbligatorio)</label>
-						<%= f.text_field :indirizzo, class: "form-control", placeholder: "Dove ti trovi?" %>
+						<%= f.text_field :indirizzo, class: "form-control", placeholder: "Inserisci il tuo indirizzo completo" %>
 					</div>
 					<div class="form-group">
 						<label>Descrizione (obbligatorio)</label>
@@ -46,6 +46,37 @@
 					<div class="form-group">
 						<label>Durata del video</label>
 						<%= f.text_field :durata_video, class: "form-control", placeholder: "Quanto dura il video che consegni?" %>
+					</div>
+				</div>
+
+				<!-- Info trasferta -->
+				<hr>
+				<div class="row">
+					<h4>Gestione trasferte</h4>
+				</div>
+				<div class="row">
+					<div class="form-group">
+						<label>Costo della trasferta (obbligatorio)</label>
+						<div class="input-group">
+							<div class="input-group-addon">€</div>
+							<%= f.number_field :price_km, class: "form-control", placeholder: "Quanto chiedi per ogni km? Es: 1,50", id: "price_km", step: "any" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('free_km').disabled=!this.checked;">
+						<label>Raggio di trasferta gratis</label>
+						<div class="input-group">
+							<div class="input-group-addon">km</div>
+							<%= f.number_field :free_km, class: "form-control", placeholder: "Nel raggio di quanti km ti muovi senza costi aggiuntivi?", id: "free_km", disabled: "true" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('max_km').disabled=!this.checked;">
+						<label>Limite massimo di trasferta</label>
+						<div class="input-group">
+							<div class="input-group-addon">km</div>
+							<%= f.number_field :max_km, class: "form-control", placeholder: "Qual e' il limite massimo di km che sei disponibile ad affrontare?", id: "max_km", disabled: "true" %>
+						</div>
 					</div>
 				</div>
 
@@ -77,7 +108,7 @@
 						<label>Foto pre-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :foto_pre, class: "form-control", placeholder: "Quanto chiedi per le foto pre-cerimonia?", id: "foto_pre", disabled: "true" %>
+							<%= f.number_field :foto_pre, class: "form-control", placeholder: "Quanto chiedi per le foto dei preparativi prima della cerimonia?", id: "foto_pre", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -85,7 +116,7 @@
 						<label>Video pre-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :video_pre, class: "form-control", placeholder: "Quanto chiedi per il video pre-cerimonia?", id: "video_pre", disabled: "true" %>
+							<%= f.number_field :video_pre, class: "form-control", placeholder: "Quanto chiedi per il video dei preparativi prima della cerimonia?", id: "video_pre", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -93,7 +124,7 @@
 						<label>Foto post-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :foto_post, class: "form-control", placeholder: "Quanto chiedi per le foto post-cerimonia?", id: "foto_post", disabled: "true" %>
+							<%= f.number_field :foto_post, class: "form-control", placeholder: "Quanto chiedi per le foto del post-cerimonia?", id: "foto_post", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -101,7 +132,7 @@
 						<label>Video post-cerimonia</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :video_post, class: "form-control", placeholder: "Quanto chiedi per il video post-cerimonia?", id: "video_post", disabled: "true" %>
+							<%= f.number_field :video_post, class: "form-control", placeholder: "Quanto chiedi per il video del post-cerimonia?", id: "video_post", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -109,7 +140,7 @@
 						<label>Fotografo addizionale</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :second_camera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un fotografo addizionale?", id: "second_camera", disabled: "true" %>
+							<%= f.number_field :second_camera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un fotografo addizionale al matrimonio?", id: "second_camera", disabled: "true" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -117,7 +148,39 @@
 						<label>Cameraman addizionale</label>
 						<div class="input-group">
 							<div class="input-group-addon">€</div>
-							<%= f.number_field :second_videocamera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un cameraman addizionale?", id: "second_videocamera", disabled: "true" %>
+							<%= f.number_field :second_videocamera, class: "form-control", placeholder: "Quanto chiedi per la presenza di un cameraman addizionale al matrimonio?", id: "second_videocamera", disabled: "true" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('prematrimoniale_foto').disabled=!this.checked;">
+						<label>Servizio fotografico prematrimoniale</label>
+						<div class="input-group">
+							<div class="input-group-addon">€</div>
+							<%= f.number_field :prematrimoniale_foto, class: "form-control", placeholder: "Quanto chiedi per un servizio fotografico prematrimoniale?", id: "prematrimoniale_foto", disabled: "true" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('prematrimoniale_video').disabled=!this.checked;">
+						<label>Servizio video prematrimoniale</label>
+						<div class="input-group">
+							<div class="input-group-addon">€</div>
+							<%= f.number_field :prematrimoniale_video, class: "form-control", placeholder: "Quanto chiedi per un servizio video prematrimoniale?", id: "prematrimoniale_video", disabled: "true" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('trash_dress_foto').disabled=!this.checked;">
+						<label>Servizio fotografico "Trash the Dress"</label>
+						<div class="input-group">
+							<div class="input-group-addon">€</div>
+							<%= f.number_field :trash_dress_foto, class: "form-control", placeholder: 'Quanto chiedi per un servizio fotografico "Trash the Dress"?', id: "trash_dress_foto", disabled: "true" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="checkbox" class: "form-checkbox" onclick="document.getElementById('trash_dress_video').disabled=!this.checked;">
+						<label>Servizio video "Trash the Dress"</label>
+						<div class="input-group">
+							<div class="input-group-addon">€</div>
+							<%= f.number_field :trash_dress_video, class: "form-control", placeholder: 'Quanto chiedi per un servizio video "Trash the Dress"?', id: "trash_dress_video", disabled: "true" %>
 						</div>
 					</div>
 				</div>

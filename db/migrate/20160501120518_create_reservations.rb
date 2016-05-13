@@ -31,6 +31,11 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :num_album
       t.integer :num_mini_album
       t.integer :num_dvd
+      t.integer :trasferta
+      t.integer :prematrimoniale_foto
+      t.integer :prematrimoniale_video
+      t.integer :trash_dress_foto
+      t.integer :trash_dress_video
       t.float :latitude
       t.float :longitude
 

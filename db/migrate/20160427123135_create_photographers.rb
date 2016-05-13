@@ -28,6 +28,13 @@ class CreatePhotographers < ActiveRecord::Migration
       t.string :durata_video
       t.float :latitude
       t.float :longitude
+      t.integer :free_km
+      t.float :price_km
+      t.integer :max_km
+      t.integer :prematrimoniale_foto
+      t.integer :prematrimoniale_video
+      t.integer :trash_dress_foto
+      t.integer :trash_dress_video
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

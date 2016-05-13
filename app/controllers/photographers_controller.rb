@@ -65,6 +65,9 @@ class PhotographersController < ApplicationController
     end
 
     def photographer_params
-      params.require(:photographer).permit(:nome, :titolo, :descrizione, :indirizzo, :imprevisti, :tempi_consegna, :num_foto, :durata_video, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, :second_camera, :second_videocamera, :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, :drone, :cancellazione)
+      params.require(:photographer).permit(:nome, :titolo, :descrizione, :indirizzo, :imprevisti, :tempi_consegna, :num_foto, :durata_video, 
+                      :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, :second_camera, :second_videocamera, 
+                      :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, :drone, :cancellazione, :free_km, :price_km, 
+                      :max_km, :prematrimoniale_foto, :prematrimoniale_video, :trash_dress_foto, :trash_dress_video)
     end
 end

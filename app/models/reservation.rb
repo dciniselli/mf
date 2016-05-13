@@ -7,6 +7,7 @@ class Reservation < ActiveRecord::Base
 
   validates :data, presence: true
   validates :indirizzo, presence: true
+  validates :total, numericality: { greater_than: 0 }
 
   enum status: { 
 		richiesta: 0, 

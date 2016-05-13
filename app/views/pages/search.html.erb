@@ -1,0 +1,79 @@
+<div id="wrapper">
+
+	<div id="sidebar">
+		<div id="widget" class="sticky">
+
+		</div>
+	</div>
+
+	<div id="article">
+
+		<div class="row">
+			<%= search_form_for @search, url: search_path do |f| %>
+				<div class="row">
+				</div>
+				<div class="row">
+				</div>
+				<div class="row">
+				</div>
+				<div class="row">
+				</div>
+				<div class="row">
+				</div>
+			<% end %>
+		</div>
+
+		<div class="row">
+			<% @photographers.each do |photographer| %>
+
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading preview">
+							<!-- Image carousel -->
+							<div class="row">
+								<div class="col-md-12 center">
+									<%= link_to photographer do %>
+										<div id="carousel_<%= photographer.id %>" class="carousel slide" data-ride="carousel">
+										  <!-- Indicators -->
+										  <% if photographer.photos %>
+											  <ol class="carousel-indicators">
+												  <% photographer.photos.each do |photo| %>
+												    <li data-target="#carousel_<%= photographer.id %>" data-slide-to="<%= photo.id %>"></li>
+												  <% end %> 
+											  </ol>
+										  <% end %>
+
+										  <!-- Wrapper for slides -->
+										  <div class="carousel-inner" role="listbox">
+										  	<% if photographer.photos %>
+									  			<% photographer.photos.each do |photo| %>
+											    	<div class="item <%= 'active' if photo.id == photographer.photos[0].id %> carousel-container-home", style="height: 192px">
+											       		<%= image_tag photo.image.url(:medium), class: "img-responsive img-home" %>
+											    	</div>
+											    <% end %>
+										    <% end %>
+										  </div>
+
+										  <!-- Left and right controls -->
+										  <a class="left carousel-control" href="#carousel_<%= photographer.id %>" role="button" data-slide="prev">
+										    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+										    <span class="sr-only">Previous</span>
+										  </a>
+										  <a class="right carousel-control" href="#carousel_<%= photographer.id %>" role="button" data-slide="next">
+										    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+										    <span class="sr-only">Next</span>
+										  </a>
+										</div>
+									<% end %>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body">
+							<%= link_to photographer.titolo, photographer %>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

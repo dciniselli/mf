@@ -12,5 +12,6 @@ class Photographer < ActiveRecord::Base
   validates :imprevisti, presence: true
   validates :tempi_consegna, presence: true, length: {maximum: 500}
   validates :cancellazione, presence: true
+  validates :price_km, presence: true
 
 end

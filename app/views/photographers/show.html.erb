@@ -68,7 +68,7 @@
 						  	<% if @photos %>
 						  		<% @photos.each do |photo| %>
 							    	<div class="item <%= 'active' if photo.id == @photos[0].id %>">
-							       		<%= image_tag photo.image.url(), class: "img-responsive" %>
+							       		<%= image_tag photo.image.url(), class: "img-responsive", style: "max-height: 533px" %>
 							    	</div>
 							    <% end %>
 						    <% end %>

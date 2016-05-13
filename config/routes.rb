@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   get '/my_requests' => 'reservations#my_requests'
   get '/my_reservations' => 'reservations#my_reservations'
 
+  get '/search' => 'pages#search'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

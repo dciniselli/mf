@@ -22,6 +22,7 @@ gem 'jquery-ui-rails'
 gem 'private_pub' #realtime messages
 gem 'thin' #realtime messages
 gem 'geocoder' #location altitudine/longitudine
+gem 'ransack' #search
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
