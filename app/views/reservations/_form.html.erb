@@ -6,68 +6,88 @@
 			<!-- servizi -->
 			<% if (!@photographer.foto_cerimonia.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :foto_cerimonia, {class: "form-checkbox"}, @photographer.foto_cerimonia, nil %> Foto cerimonia: €<%= @photographer.foto_cerimonia %>
+					<%= f.check_box :foto_cerimonia, class: "form-checkbox", name: @photographer.foto_cerimonia %> Foto cerimonia: €<%= @photographer.foto_cerimonia %>
 				</div>
 			<% end %>
 			<% if (!@photographer.video_cerimonia.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :video_cerimonia, {class: "form-checkbox"}, @photographer.video_cerimonia, nil %> Video cerimonia: €<%= @photographer.video_cerimonia %>
+					<%= f.check_box :video_cerimonia, class: "form-checkbox", name: @photographer.video_cerimonia %> Video cerimonia: €<%= @photographer.video_cerimonia %>
 				</div>
 			<% end %>
 			<% if (!@photographer.foto_pre.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :foto_pre, {class: "form-checkbox"}, @photographer.foto_pre, nil %> Foto pre-cerimonia: €<%= @photographer.foto_pre %>
+					<%= f.check_box :foto_pre, class: "form-checkbox", name: @photographer.foto_pre %> Foto pre-cerimonia: €<%= @photographer.foto_pre %>
 				</div>
 			<% end %>
 			<% if (!@photographer.video_pre.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :video_pre, {class: "form-checkbox"}, @photographer.video_pre, nil %> Video pre-cerimonia: €<%= @photographer.video_pre %>
+					<%= f.check_box :video_pre, class: "form-checkbox", name: @photographer.video_pre %> Video pre-cerimonia: €<%= @photographer.video_pre %>
 				</div>
 			<% end %>
 			<% if (!@photographer.foto_post.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :foto_post, {class: "form-checkbox"}, @photographer.foto_post, nil %> Foto post-cerimonia: €<%= @photographer.foto_post %>
+					<%= f.check_box :foto_post, class: "form-checkbox", name: @photographer.foto_post %> Foto post-cerimonia: €<%= @photographer.foto_post %>
 				</div>
 			<% end %>
 			<% if (!@photographer.video_post.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :video_post, {class: "form-checkbox"}, @photographer.video_post, nil %> Video post-cerimonia: €<%= @photographer.video_post %>
+					<%= f.check_box :video_post, class: "form-checkbox", name: @photographer.video_post %> Video post-cerimonia: €<%= @photographer.video_post %>
+				</div>
+			<% end %>
+			<% if (!@photographer.prematrimoniale_foto.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :prematrimoniale_foto, class: "form-checkbox", name: @photographer.prematrimoniale_foto %> Servizio fotografico prematrimoniale: €<%= @photographer.prematrimoniale_foto %>
+				</div>
+			<% end %>
+			<% if (!@photographer.prematrimoniale_video.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :prematrimoniale_video, class: "form-checkbox", name: @photographer.prematrimoniale_video %> Servizio video prematrimoniale: €<%= @photographer.prematrimoniale_video %>
+				</div>
+			<% end %>
+			<% if (!@photographer.trash_dress_foto.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :trash_dress_foto, class: "form-checkbox", name: @photographer.trash_dress_foto %> Servizio fotografico "Trash the Dress": €<%= @photographer.trash_dress_foto %>
+				</div>
+			<% end %>
+			<% if (!@photographer.trash_dress_video.blank?) %>
+				<div class="form-group">
+					<%= f.check_box :trash_dress_video, class: "form-checkbox", name: @photographer.trash_dress_video %> Servizio video "Trash the Dress": €<%= @photographer.trash_dress_video %>
 				</div>
 			<% end %>
 			<% if (!@photographer.second_camera.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :second_camera, {class: "form-checkbox"}, @photographer.second_camera, nil %> Fotografo addizionale: €<%= @photographer.second_camera %>
+					<%= f.check_box :second_camera, class: "form-checkbox", name: @photographer.second_camera %> Fotografo addizionale: €<%= @photographer.second_camera %>
 				</div>
 			<% end %>
 			<% if (!@photographer.second_videocamera.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :second_videocamera, {class: "form-checkbox"}, @photographer.second_videocamera, nil %> Cameraman addizionale: €<%= @photographer.second_videocamera %>
+					<%= f.check_box :second_videocamera, class: "form-checkbox", name: @photographer.second_videocamera %> Cameraman addizionale: €<%= @photographer.second_videocamera %>
 				</div>
 			<% end %>
 				<!-- prodotti -->
 			<% if (!@photographer.foto_hd.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :foto_hd, {class: "form-checkbox"}, @photographer.foto_hd, nil %> Consegna foto via web €<%= @photographer.foto_hd %>
+					<%= f.check_box :foto_hd, class: "form-checkbox", name: @photographer.foto_hd %> Consegna foto via web €<%= @photographer.foto_hd %>
 				</div>
 			<% end %>
 			<% if (!@photographer.negativi.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :negativi, {class: "form-checkbox"}, @photographer.negativi, nil %> Consegna negativi: €<%= @photographer.negativi %>
+					<%= f.check_box :negativi, class: "form-checkbox", name: @photographer.negativi %> Consegna negativi: €<%= @photographer.negativi %>
 				</div>
 			<% end %>
 			<% if (!@photographer.trailer_foto.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :trailer_foto, {class: "form-checkbox"}, @photographer.trailer_foto, nil %> Trailer fotografico: €<%= @photographer.trailer_foto %>
+					<%= f.check_box :trailer_foto, class: "form-checkbox", name: @photographer.trailer_foto %> Trailer fotografico: €<%= @photographer.trailer_foto %>
 				</div>
 			<% end %>
 			<% if (!@photographer.trailer_video.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :trailer_video, {class: "form-checkbox"}, @photographer.trailer_video, nil %> Trailer video: €<%= @photographer.trailer_video %>
+					<%= f.check_box :trailer_video, class: "form-checkbox", name: @photographer.trailer_video %> Trailer video: €<%= @photographer.trailer_video %>
 				</div>
 			<% end %>
 			<% if (!@photographer.drone.blank?) %>
 				<div class="form-group">
-					<%= f.check_box :drone, {class: "form-checkbox"}, @photographer.drone, nil %> Drone: €<%= @photographer.drone %>
+					<%= f.check_box :drone, class: "form-checkbox", name: @photographer.drone %> Drone: €<%= @photographer.drone %>
 				</div>
 			<% end %>
 		</div>
@@ -98,20 +118,11 @@
 			</div>
 		<% end %>
 	</div>
-
-
-	<%= f.hidden_field :photographer_id, value: @photographer.user.id %>
-	<%= f.hidden_field :tempi_consegna, value: @photographer.tempi_consegna %>
-	<%= f.hidden_field :num_foto, value: @photographer.num_foto %>
-	<%= f.hidden_field :durata_video, value: @photographer.durata_video %>
-	<%= f.hidden_field :imprevisti, value: @photographer.imprevisti %>
-	<%= f.hidden_field :cancellazione, value: @photographer.cancellazione %>
-	<%= f.hidden_field :album, value: @photographer.album, id: "album_value" %>
-	<%= f.hidden_field :mini_album, value: @photographer.mini_album, id: "mini_album_value" %>
-	<%= f.hidden_field :dvd, value: @photographer.dvd, id: "dvd_value" %>
-	<%= f.hidden_field :status, value: "richiesta" %>
 	
-	<%= f.hidden_field :total, value: 0, id: "total_value" %>
+
+	<input type="hidden" id="album_value" value="<%= @photographer.album %>" />
+	<input type="hidden" id="mini_album_value" value="<%= @photographer.mini_album %>" />
+	<input type="hidden" id="dvd_value" value="<%= @photographer.dvd %>" />
 	<input type="hidden" id="total_album" value="0" />
 	<input type="hidden" id="total_mini_album" value="0" />
 	<input type="hidden" id="total_dvd" value="0" />
@@ -122,7 +133,7 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="form-group">
-				<%= f.text_field :indirizzo, class: "form-control", placeholder: "Indirizzo matrimonio (obbligatiorio)" %>
+				<%= f.text_field :indirizzo, class: "form-control", value: session[:loc_search], id: "indirizzo" %>
 			</div>
 		</div>
 		<div class="col-md-4">
@@ -151,6 +162,7 @@
 <script>
 
 	$(function () {
+
 		var servizi = document.getElementsByClassName("form-checkbox");
 
 		for (var i = 0, len = servizi.length; i < len; i++) {
@@ -170,7 +182,7 @@
 
 	function addServices() {
 	    var total = parseInt(document.getElementById("total_services").value);
-	    var value = this.value;
+	    var value = parseInt(this.name);
 	    
 	    if (this.checked) {
 	        total += parseInt(value);
@@ -222,7 +234,6 @@
 		var total_dvd = parseInt(document.getElementById("total_dvd").value);
 		var total = parseInt(total_services)+parseInt(total_album)+parseInt(total_mini_album)+parseInt(total_dvd);
 
-		$("#total_value").val(total);
 		$("#total_text").text(total);
 		console.log(total)
 

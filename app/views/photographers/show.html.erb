@@ -26,26 +26,9 @@
 
 				<!-- Info principali -->
 				<div class="row">
-					<div class="col-md-3 text-center">
-						<% if (current_user.id == @photographer.user_id) %>
-							<%= link_to "Modifica annuncio", edit_photographer_path(current_user.photographer), class: "btn btn-primary btn-block" %>
-						<% else %>
-							<% if @photographer.user.avatar? %>
-								<%= image_tag @photographer.user.avatar(:thumb), class: "img-circle avatar-large" %>
-							<% elsif @photographer.user.image? %>
-								<%= image_tag avatar_url(@photographer.user), class: "img-circle avatar-large" %>
-							<% else %>
-								<%= image_tag 'http://www.abruzzo24ore.tv/img/3bcda8f2aed2c8f1fdea1c020dadcf39/w/300/19332.jpg', class: "img-circle avatar-large" %>
-							<% end %>
-							<br>
-							<%= @photographer.user.nome %>
-						<% end %>
-					</div>
-
-					<div class="col-md-9" >
-						<div class="row">
-							<h4><%= @photographer.nome %></h4>
-							<h5><%= @photographer.titolo %></h5>
+					<div class="col-md-12" >
+							<h2><%= @photographer.nome %></h2>
+							<h4><%= @photographer.titolo %></h4>
 						</div>
 					</div>
 				</div>

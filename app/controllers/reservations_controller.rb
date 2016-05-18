@@ -1,8 +1,36 @@
 class ReservationsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :set_photographer
 
 	def create
 		@reservation = current_user.reservations.create(reservation_params)
+		@reservation.photographer_id = @photographer.user.id
+		@reservation.tempi_consegna = @photographer.tempi_consegna
+		@reservation.num_foto = @photographer.num_foto
+		@reservation.durata_video = @photographer.durata_video
+		@reservation.imprevisti = @photographer.imprevisti
+		@reservation.cancellazione = @photographer.cancellazione
+		@reservation.status = "richiesta"
+		@reservation.total = (@reservation.foto_cerimonia ? @photographer.foto_cerimonia : 0) + 
+								(@reservation.video_cerimonia ? @photographer.video_cerimonia : 0) +
+								(@reservation.foto_pre ? @photographer.foto_pre : 0) +
+								(@reservation.video_pre ? @photographer.video_pre : 0) +
+								(@reservation.foto_post ? @photographer.foto_post : 0) +
+								(@reservation.video_post ? @photographer.video_post : 0) +
+								(@reservation.prematrimoniale_foto ? @photographer.prematrimoniale_foto : 0) +
+								(@reservation.prematrimoniale_video ? @photographer.prematrimoniale_video : 0) +
+								(@reservation.trash_dress_foto ? @photographer.trash_dress_foto : 0) +
+								(@reservation.trash_dress_video ? @photographer.trash_dress_video : 0) +
+								(@reservation.second_camera ? @photographer.second_camera : 0) +
+								(@reservation.second_videocamera ? @photographer.second_videocamera : 0) +
+								(@reservation.foto_hd ? @photographer.foto_hd : 0) +
+								(@reservation.negativi ? @photographer.negativi : 0) +
+								(@reservation.trailer_foto ? @photographer.trailer_foto : 0) +
+								(@reservation.trailer_video ? @photographer.trailer_video : 0) +
+								(@reservation.drone ? @photographer.drone : 0) +
+								(@reservation.num_album ? (@reservation.num_album*@photographer.album) : 0) +
+								(@reservation.num_mini_album ? (@reservation.num_mini_album*@photographer.album) : 0) +
+								(@reservation.num_dvd ? (@reservation.num_dvd*@photographer.album) : 0)
 
 		if @reservation.save 
 			redirect_to photographer_reservation_path(@reservation.photographer, @reservation), notice:  "Richiesta inviata!"
@@ -52,10 +80,13 @@ class ReservationsController < ApplicationController
 
 	private	    
 		def reservation_params
-			params.require(:reservation).permit(:photographer_id, :data, :indirizzo, :status, :tempi_consegna, :num_foto, :durata_video, 
-							:imprevisti, :cancellazione, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, 
-							:second_camera, :second_videocamera, :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, 
-							:drone, :total, :messaggio, :num_album, :num_mini_album, :num_dvd, :trasferta, :prematrimoniale_foto, 
-							:prematrimoniale_video, :trash_dress_foto, :trash_dress_video)
+			params.require(:reservation).permit(:data, :indirizzo, :status, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, 
+							:second_camera, :second_videocamera, :foto_hd, :negativi, :trailer_foto, :trailer_video, 
+							:drone, :num_album, :num_mini_album, :num_dvd, :trasferta, :prematrimoniale_foto, 
+							:prematrimoniale_video, :trash_dress_foto, :trash_dress_video, :offer)
 		end
+
+		def set_photographer
+	      @photographer = Photographer.find(params[:photographer_id])
+	    end
 end

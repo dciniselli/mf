@@ -1,6 +1,7 @@
 class PhotographersController < ApplicationController
   before_action :set_photographer, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_photographer, except: [:show]
 
   def index
     @photographer = current_user.photographer
@@ -33,16 +34,11 @@ class PhotographersController < ApplicationController
       @photos = @photographer.photos
       redirect_to photographer_path(@photographer), notice: "Dati inseriti con successo."
     else
-      redirect_to new_photographer_path, alert: "Ops! Si è verificato un errore. Per favore inserisci tutte le informazioni richieste e almeno una foto. Ricorda anche che i prezzi devono essere numeri interi"
+      redirect_to new_photographer_path, alert: "Ops! Si è verificato un errore."
     end
   end
 
   def edit
-    if current_user.photographer == @photographer
-      @photos = @photographer.photos
-    else
-      redirect_to root_path, alert: "Accesso negato"
-    end
   end
 
   def update
@@ -55,13 +51,21 @@ class PhotographersController < ApplicationController
 
       redirect_to photographer_path(@photographer), notice: "Dati aggiornati con successo."
     else
-      render :edit, alert: "Ops! Si è verificato un errore. Per favore inserisci tutte le informazioni richieste e almeno una foto. Ricorda anche che i prezzi devono essere numeri interi"
+      render :edit, alert: "Ops! Si è verificato un errore."
     end
   end
 
   private
     def set_photographer
       @photographer = Photographer.find(params[:id])
+    end
+
+    def authenticate_photographer
+         if current_user.photographer == @photographer
+          @photos = @photographer.photos
+        else
+          redirect_to root_path, alert: "Accesso negato"
+        end
     end
 
     def photographer_params
