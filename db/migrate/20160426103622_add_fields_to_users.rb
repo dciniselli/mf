@@ -9,9 +9,6 @@ class AddFieldsToUsers < ActiveRecord::Migration
     add_column :users, :image, :string
     add_column :users, :telefono, :string
     add_column :users, :descrizione, :text
-    add_column :users, :indirizzo, :string
-    add_column :users, :latitude, :float
-    add_column :users, :longitude, :float
 
   	add_index :users, :confirmation_token, unique: true
   end

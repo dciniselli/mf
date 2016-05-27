@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :set_photographer
+	before_action :set_photographer, except: [:my_requests, :my_reservations]
 
 	def create
 		@reservation = current_user.reservations.create(reservation_params)
@@ -11,6 +11,16 @@ class ReservationsController < ApplicationController
 		@reservation.imprevisti = @photographer.imprevisti
 		@reservation.cancellazione = @photographer.cancellazione
 		@reservation.status = "richiesta"
+		@reservation.trasferta = @reservation.distance_from(@photographer)
+
+		if @reservation.trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
+			@reservation.trasferta_price = 0
+		elsif @reservation.trasferta >= (@photographer.max_km ? @photographer.max_km : 9999999)
+			redirect_to photographer_path(@photographer), alert: "Purtroppo questo fotografo non effettua trasferte cosi lunghe."
+		else
+			@reservation.trasferta_price = @reservation.trasferta * @photographer.price_km
+		end
+
 		@reservation.total = (@reservation.foto_cerimonia ? @photographer.foto_cerimonia : 0) + 
 								(@reservation.video_cerimonia ? @photographer.video_cerimonia : 0) +
 								(@reservation.foto_pre ? @photographer.foto_pre : 0) +
@@ -30,12 +40,14 @@ class ReservationsController < ApplicationController
 								(@reservation.drone ? @photographer.drone : 0) +
 								(@reservation.num_album ? (@reservation.num_album*@photographer.album) : 0) +
 								(@reservation.num_mini_album ? (@reservation.num_mini_album*@photographer.album) : 0) +
-								(@reservation.num_dvd ? (@reservation.num_dvd*@photographer.album) : 0)
+								(@reservation.num_dvd ? (@reservation.num_dvd*@photographer.album) : 0) +
+								@reservation.trasferta_price
+
 
 		if @reservation.save 
 			redirect_to photographer_reservation_path(@reservation.photographer, @reservation), notice:  "Richiesta inviata!"
 	    else
-	      	redirect_to photographer_path(@reservation.photographer_id), alert: "Ops! Si è verificato un errore. Per favore inserisci tutte le informazioni richieste!"
+	      	redirect_to photographer_path(@photographer), alert: "Ops! Si è verificato un errore."
 	    end
 	end
 
@@ -80,10 +92,10 @@ class ReservationsController < ApplicationController
 
 	private	    
 		def reservation_params
-			params.require(:reservation).permit(:data, :indirizzo, :status, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, 
-							:second_camera, :second_videocamera, :foto_hd, :negativi, :trailer_foto, :trailer_video, 
-							:drone, :num_album, :num_mini_album, :num_dvd, :trasferta, :prematrimoniale_foto, 
-							:prematrimoniale_video, :trash_dress_foto, :trash_dress_video, :offer)
+			params.require(:reservation).permit(:data, :indirizzo, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, 
+							:foto_post, :video_post, :prematrimoniale_foto, :prematrimoniale_video, :trash_dress_foto, 
+							:trash_dress_video, :second_camera, :second_videocamera, :foto_hd, :negativi, :trailer_foto, :trailer_video, 
+							:drone, :num_album, :num_mini_album, :num_dvd, :status, :offer)
 		end
 
 		def set_photographer

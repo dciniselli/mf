@@ -209,6 +209,10 @@
 						<div><%= "Video Pre-Cerimonia" unless @reservation.video_pre.blank? %></div>
 						<div><%= "Foto Post-Cerimonia" unless @reservation.foto_post.blank? %></div>
 						<div><%= "Video Post-Cerimonia" unless @reservation.video_post.blank? %></div>
+						<div><%= "Servizio fotografico prematrimoniale" unless @reservation.prematrimoniale_foto.blank? %></div>
+						<div><%= "Servizio video prematrimoniale" unless @reservation.prematrimoniale_video.blank? %></div>
+						<div><%= 'Servizio fotografico "Trash the Dress"' unless @reservation.trash_dress_foto.blank? %></div>
+						<div><%= 'Servizio video "Trash the Dress"' unless @reservation.trash_dress_video.blank? %></div>
 						<div><%= "Fotografo Addizionale" unless @reservation.second_camera.blank? %></div>
 						<div><%= "Cameraman Addizionale" unless @reservation.second_videocamera.blank? %></div>
 						<div><%= "Consegna Foto via Web" unless @reservation.foto_hd.blank? %></div>
@@ -248,7 +252,12 @@
 					</div>
 					<hr>
 					<div class="row">
-						<div><h3>Totale: €<%= @reservation.total %></h3></div>
+						<% if @reservation.offer.blank? %>
+							<div><h3>Totale: €<%= @reservation.total %></h3></div>
+						<% else %>
+							<div><h4><del>Totale: €<%= @reservation.total %></del></h4></div>
+							<div><h3>Offerta €<%= @reservation.offer %></h3></div>
+						<% end %>
 					</div>
 
 					<!-- google maps -->

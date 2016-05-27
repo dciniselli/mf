@@ -34,6 +34,7 @@ class CreateReservations < ActiveRecord::Migration
       t.integer :num_mini_album
       t.integer :num_dvd
       t.integer :trasferta
+      t.integer :trasferta_price
       t.float :latitude
       t.float :longitude
 

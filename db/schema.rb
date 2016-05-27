@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20160511203446) do
     t.integer  "num_mini_album"
     t.integer  "num_dvd"
     t.integer  "trasferta"
+    t.integer  "trasferta_price"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at",            null: false

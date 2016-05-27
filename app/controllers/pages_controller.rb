@@ -1,18 +1,17 @@
 class PagesController < ApplicationController
   def home
   	@photographers = Photographer.all
+    @user = current_user if user_signed_in?
   end
 
   def search
 
   	if params[:search].present? && params[:search].strip != ""
   		session[:loc_search] = params[:search]
+      session[:loc_coordinates] = Geocoder.coordinates(params[:search])
+      #session[:loc_latitude] = Geocoder.latitude(params[:search])
+      #session[:loc_longitude] = Geocoder.longitude(params[:search])
   	end
-
-    if user_signed_in? && (session[:loc_search] && session[:loc_search] != "")
-      @user = current_user
-      @user.indirizzo = session[:loc_search]
-    end
 
   	arrResult = Array.new
   	@all_photographers = Photographer.all

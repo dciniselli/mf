@@ -1,7 +1,7 @@
 class PhotographersController < ApplicationController
   before_action :set_photographer, only: [:show, :edit, :update]
-  before_action :authenticate_user!, except: [:show]
-  before_action :authenticate_photographer, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_photographer, except: [:new, :show, :create, :index]
 
   def index
     @photographer = current_user.photographer
@@ -10,6 +10,16 @@ class PhotographersController < ApplicationController
 
   def show
     @photos = @photographer.photos
+
+    @km_trasferta = @photographer.distance_from(session[:loc_search]).to_i
+
+    if @km_trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
+      @trasferta_price = 0
+    elsif @km_trasferta >= (@photographer.max_km ? @photographer.max_km : 9999999)
+      redirect_to photographer_path(@photographer), alert: "Purtroppo questo fotografo non effettua trasferte cosi lunghe."
+    else
+      @trasferta_price = (@km_trasferta * @photographer.price_km).to_i
+    end
   end
 
   def new
@@ -61,9 +71,7 @@ class PhotographersController < ApplicationController
     end
 
     def authenticate_photographer
-         if current_user.photographer == @photographer
-          @photos = @photographer.photos
-        else
+        if current_user.photographer != @photographer || current_user.photographer.blank?
           redirect_to root_path, alert: "Accesso negato"
         end
     end
