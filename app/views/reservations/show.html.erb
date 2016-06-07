@@ -276,12 +276,10 @@
 						    <script>
 						      function initMap() {
 						        var mapDiv = document.getElementById('map');
-
 						        var map = new google.maps.Map(mapDiv, {
 						          center: {lat: <%= @reservation.latitude %>, lng: <%= @reservation.longitude %>},
-						          zoom: 11
+						          zoom: 15
 						        });
-
 						        var marker = new google.maps.Marker({
 						        	position: {lat: <%= @reservation.latitude %>, lng: <%= @reservation.longitude %>},
 						        	title: "<%= @reservation.photographer.nome %>"

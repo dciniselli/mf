@@ -11,7 +11,8 @@ class ReservationsController < ApplicationController
 		@reservation.imprevisti = @photographer.imprevisti
 		@reservation.cancellazione = @photographer.cancellazione
 		@reservation.status = "richiesta"
-		@reservation.trasferta = @reservation.distance_from(@photographer)
+		@reservation.indirizzo = current_user.address.indirizzo
+		@reservation.trasferta = current_user.address.distance_from(@photographer)
 
 		if @reservation.trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
 			@reservation.trasferta_price = 0

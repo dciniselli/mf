@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   def home
   	@photographers = Photographer.all
     @user = current_user if user_signed_in?
+    @address = @user ? @user.address : nil
   end
 
   def search

@@ -1,6 +1,14 @@
 <%= form_for ([@photographer, @photographer.reservations.new]) do |f| %>
 
 	<div class="row">
+		<div class="col-md-4">
+			<div class="form-group">
+				<%= f.text_field :data, id: "reservation_data", class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
 		<div class="col-md-12">
 		
 			<!-- servizi -->
@@ -119,7 +127,6 @@
 		<% end %>
 	</div>
 	
-	<input type="hidden" id="loc_coordinates" value="<%= session[:loc_coordinates] %>" />
 	<input type="hidden" id="costo_trasferta" value="<%= @trasferta_price %>" />
 	<input type="hidden" id="album_value" value="<%= @photographer.album %>" />
 	<input type="hidden" id="mini_album_value" value="<%= @photographer.mini_album %>" />
@@ -134,24 +141,12 @@
 	<!-- info base -->
 	<div class="row">
 		<div class="col-md-12">
-			<h5>Costo trasferta: <%= @trasferta_price %> €</h5>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-8">
-			<div class="form-group">
-				<%= f.text_field :indirizzo, class: "form-control", value: session[:loc_search], id: "indirizzo" %>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="form-group">
-				<%= f.text_field :data, id: "reservation_data", class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
-			</div>
+			<h5>Costo trasferta a <%= current_user.address.indirizzo %>: <%= @trasferta_price %> €</h5>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<h3>Total: <span id="total_text"> <%= @trasferta_price %></span> €</h3>
+			<h3>Totale: <span id="total_text"> <%= @trasferta_price %></span> €</h3>
 		</div>
 	</div>
 	<div class="row">

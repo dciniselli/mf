@@ -13,3 +13,4 @@ class AddFieldsToUsers < ActiveRecord::Migration
   	add_index :users, :confirmation_token, unique: true
   end
 end
+

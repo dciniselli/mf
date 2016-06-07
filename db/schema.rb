@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511203446) do
+ActiveRecord::Schema.define(version: 20160607094452) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "indirizzo"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -152,9 +163,6 @@ ActiveRecord::Schema.define(version: 20160511203446) do
     t.string   "image"
     t.string   "telefono"
     t.text     "descrizione"
-    t.string   "indirizzo"
-    t.float    "latitude"
-    t.float    "longitude"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

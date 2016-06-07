@@ -10,8 +10,8 @@ class PhotographersController < ApplicationController
 
   def show
     @photos = @photographer.photos
-
-    @km_trasferta = @photographer.distance_from(session[:loc_search]).to_i
+    
+    @km_trasferta = user_signed_in? ? @photographer.distance_from(current_user.address) : 0
 
     if @km_trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
       @trasferta_price = 0

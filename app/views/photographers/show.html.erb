@@ -143,30 +143,38 @@
 									    </style>
 
 									    <script>
-									    	function initMap() {
-											  var directionsService = new google.maps.DirectionsService;
-											  var directionsDisplay = new google.maps.DirectionsRenderer;
-											  var map = new google.maps.Map(document.getElementById('map'), {
-											    zoom: 7,
-											    center: {lat: 41.85, lng: -87.65}
-											  });
-											  directionsDisplay.setMap(map);
-											}
+									      function initMap() {
+									      	var photographer = {lat: <%= @photographer.latitude %>, lng: <%= @photographer.longitude %>}
+									      	var wedding = {lat: <%= current_user.address.latitude %>, lng: <%= current_user.address.longitude %>}
 
-											function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-											  directionsService.route({
-											    origin: {lat: 41.85, lng: -87.65}
-											    destination: {lat: 42.85, lng: -87.65}
-											    travelMode: google.maps.TravelMode.DRIVING
-											  }, function(response, status) {
-											    if (status === google.maps.DirectionsStatus.OK) {
-											      directionsDisplay.setDirections(response);
-											    } else {
-											      window.alert('Directions request failed due to ' + status);
-											    }
-											  });
-											}
+									        var mapDiv = document.getElementById('map');
+
+									        var map = new google.maps.Map(mapDiv, {
+									          zoom: 11
+									        });
+
+									        var directionsDisplay = new google.maps.DirectionsRenderer({
+										      map: map
+										    });
+
+										    // Set destination, origin and travel mode.
+										    var request = {
+										      destination: wedding,
+										      origin: photographer,
+										      travelMode: google.maps.TravelMode.DRIVING
+										    };
+
+										    // Pass the directions request to the directions service.
+										    var directionsService = new google.maps.DirectionsService();
+										    directionsService.route(request, function(response, status) {
+										      if (status == google.maps.DirectionsStatus.OK) {
+										        // Display the route on the map.
+										        directionsDisplay.setDirections(response);
+										      };
+										    });
+									      }
 									    </script>
+
 									</div>
 								</div>
 
@@ -216,14 +224,11 @@
 
 									    <script>
 									      function initMap() {
-
 									        var mapDiv = document.getElementById('map');
-
 									        var map = new google.maps.Map(mapDiv, {
 									          center: {lat: <%= @photographer.latitude %>, lng: <%= @photographer.longitude %>},
 									          zoom: 11
 									        });
-
 									        var marker = new google.maps.Marker({
 									        	position: {lat: <%= @photographer.latitude %>, lng: <%= @photographer.longitude %>},
 									        	title: "<%= @photographer.nome %>"
@@ -231,6 +236,9 @@
 									        marker.setMap(map);
 									      }
 									    </script>
+									    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+									        async defer></script>
+
 									</div>
 								</div>
 

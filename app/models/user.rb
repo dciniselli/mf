@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_one :photographer, dependent: :destroy
   has_many :reservations
   has_one :search, dependent: :destroy
+  has_one :address, dependent: :destroy
 
 
   has_attached_file :avatar, styles: { medium: "300x300#", thumb: "100x100#" }
