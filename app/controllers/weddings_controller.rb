@@ -1,11 +1,11 @@
-class AddressesController < ApplicationController
+class WeddingsController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
-		@address = Address.new(address_params)
-		@address.user_id = current_user.id
+		@wedding = Wedding.new(address_params)
+		@wedding.user_id = current_user.id
 		
-		if @address.save 
+		if @wedding.save 
 			redirect_to root_path
 	    else
 	      	redirect_to root_path, alert: "Ops! Si è verificato un errore."
@@ -13,9 +13,9 @@ class AddressesController < ApplicationController
 	end
 
 	def update
-		@address = Address.find(params[:id])
+		@wedding = Wedding.find(params[:id])
 
-		if @address.update(address_params)
+		if @wedding.update(address_params)
 			redirect_to root_path
 	    else
 	      	redirect_to root_path, alert: "Ops! Si è verificato un errore."
@@ -25,6 +25,6 @@ class AddressesController < ApplicationController
 	private
 
 	def address_params
-		params.require(:address).permit(:indirizzo)
+		params.require(:wedding).permit(:indirizzo, :data)
 	end
 end

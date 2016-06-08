@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160607094452) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "indirizzo"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id"
-
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -172,5 +161,17 @@ ActiveRecord::Schema.define(version: 20160607094452) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weddings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "indirizzo"
+    t.datetime "data"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "weddings", ["user_id"], name: "index_weddings_on_user_id"
 
 end

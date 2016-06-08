@@ -11,7 +11,7 @@ class PhotographersController < ApplicationController
   def show
     @photos = @photographer.photos
     
-    @km_trasferta = user_signed_in? ? @photographer.distance_from(current_user.address) : 0
+    @km_trasferta = user_signed_in? ? @photographer.distance_from(current_user.wedding) : 0
 
     if @km_trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
       @trasferta_price = 0
@@ -79,7 +79,7 @@ class PhotographersController < ApplicationController
     def photographer_params
       params.require(:photographer).permit(:nome, :titolo, :descrizione, :indirizzo, :imprevisti, :tempi_consegna, :num_foto, :durata_video, 
                       :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, :foto_post, :video_post, :second_camera, :second_videocamera, 
-                      :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_foto, :trailer_video, :drone, :cancellazione, :free_km, :price_km, 
+                      :album, :mini_album, :foto_hd, :negativi, :dvd, :trailer_fotso, :trailer_video, :drone, :cancellazione, :free_km, :price_km, 
                       :max_km, :prematrimoniale_foto, :prematrimoniale_video, :trash_dress_foto, :trash_dress_video)
     end
 end

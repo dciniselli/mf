@@ -4,15 +4,16 @@ class ReservationsController < ApplicationController
 
 	def create
 		@reservation = current_user.reservations.create(reservation_params)
-		@reservation.photographer_id = @photographer.user.id
+		@reservation.photographer_id = @photographer.id
 		@reservation.tempi_consegna = @photographer.tempi_consegna
 		@reservation.num_foto = @photographer.num_foto
 		@reservation.durata_video = @photographer.durata_video
 		@reservation.imprevisti = @photographer.imprevisti
 		@reservation.cancellazione = @photographer.cancellazione
 		@reservation.status = "richiesta"
-		@reservation.indirizzo = current_user.address.indirizzo
-		@reservation.trasferta = current_user.address.distance_from(@photographer)
+		@reservation.indirizzo = current_user.wedding.indirizzo
+		@reservation.data = current_user.wedding.data
+		@reservation.trasferta = current_user.wedding.distance_from(@photographer)
 
 		if @reservation.trasferta <= (@photographer.free_km ? @photographer.free_km : 0)
 			@reservation.trasferta_price = 0
@@ -93,10 +94,10 @@ class ReservationsController < ApplicationController
 
 	private	    
 		def reservation_params
-			params.require(:reservation).permit(:data, :indirizzo, :foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, 
+			params.require(:reservation).permit(:foto_cerimonia, :video_cerimonia, :foto_pre, :video_pre, 
 							:foto_post, :video_post, :prematrimoniale_foto, :prematrimoniale_video, :trash_dress_foto, 
 							:trash_dress_video, :second_camera, :second_videocamera, :foto_hd, :negativi, :trailer_foto, :trailer_video, 
-							:drone, :num_album, :num_mini_album, :num_dvd, :status, :offer)
+							:drone, :num_album, :num_mini_album, :num_dvd, :status, :offer) if params[:reservation]
 		end
 
 		def set_photographer

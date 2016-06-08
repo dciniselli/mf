@@ -1,12 +1,4 @@
-<%= form_for ([@photographer, @photographer.reservations.new]) do |f| %>
-
-	<div class="row">
-		<div class="col-md-4">
-			<div class="form-group">
-				<%= f.text_field :data, id: "reservation_data", class: "form-control", placeholder: "Data matrimonio (obbligatoria)" %>
-			</div>
-		</div>
-	</div>
+<%= form_for([@photographer, @photographer.reservations.new]) do |f| %>
 
 	<div class="row">
 		<div class="col-md-12">
@@ -141,7 +133,7 @@
 	<!-- info base -->
 	<div class="row">
 		<div class="col-md-12">
-			<h5>Costo trasferta a <%= current_user.address.indirizzo %>: <%= @trasferta_price %> €</h5>
+			<h5>Costo trasferta a <%= current_user.wedding.indirizzo %>: <%= @trasferta_price %> €</h5>
 		</div>
 	</div>
 	<div class="row">
@@ -249,18 +241,4 @@
 		console.log(total)
 
 	}
-</script>
-
-
-
-
-
-<script>
-	$(function() {
-
-		$('#reservation_data').datepicker({
-			dateFormat: 'dd-mm-yy',
-			minDate: 0
-		});
-	});
 </script>

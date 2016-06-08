@@ -1,4 +1,5 @@
 <div class="row">
+
 	<div class="col-md-3">
 		<div class="center">
 			<% if @photographer.user.avatar? %>
@@ -20,6 +21,7 @@
 
 
 	<div class="col-md-9">
+
 		<div class="panel panel-default">
 			<div class="panel-body">
 
@@ -120,7 +122,8 @@
 							<hr>
 
 
-							<% if user_signed_in? %>
+							<% if user_signed_in? && !current_user.wedding.blank? %>
+									<h4>Prezzi per matrimonio a <%= current_user.wedding.indirizzo %> il <%= current_user.wedding.data.strftime('%d-%m-%Y') %> </h4>
 
 								<!-- form per prenotazione -->
 								<div class="row">
@@ -145,7 +148,7 @@
 									    <script>
 									      function initMap() {
 									      	var photographer = {lat: <%= @photographer.latitude %>, lng: <%= @photographer.longitude %>}
-									      	var wedding = {lat: <%= current_user.address.latitude %>, lng: <%= current_user.address.longitude %>}
+									      	var wedding = {lat: <%= current_user.wedding.latitude %>, lng: <%= current_user.wedding.longitude %>}
 
 									        var mapDiv = document.getElementById('map');
 
@@ -180,7 +183,7 @@
 
 							<% else %>
 
-								<!-- listino prezzi-->
+								<!-- listino prezzi non interattivo-->
 								<div><%= "Foto Cerimonia: #{@photographer.foto_cerimonia}€" unless @photographer.foto_cerimonia.blank? %></div>
 								<div><%= "Video Cerimonia: #{@photographer.video_cerimonia}€" unless @photographer.video_cerimonia.blank? %></div>
 								<div><%= "Foto Pre-Cerimonia: #{@photographer.foto_pre}€" unless @photographer.foto_pre.blank? %></div>
@@ -206,7 +209,8 @@
 								<div><%= "Trasferta massima: #{@photographer.max_km} km" unless @photographer.max_km.blank? %></div>
 								
 								<hr>
-								<h3>Registrati o accedi per inviare una richiesta a questo fotografo!</h3>
+
+								<h3>Registrati, accedi o inserisci data e luogo del tuo matrimonio per inviare una richiesta a questo fotografo!</h3>(nota: inserire qui form e differenziare utente non registrato da utente senza wedding tab)
 								<hr>
 
 								<!-- google maps -->
@@ -236,8 +240,6 @@
 									        marker.setMap(map);
 									      }
 									    </script>
-									    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-									        async defer></script>
 
 									</div>
 								</div>
@@ -254,4 +256,6 @@
 			</div>
 		</div>
 	</div>
+
+
 </div>
